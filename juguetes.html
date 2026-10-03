@@ -113,8 +113,61 @@
       </div>
     </div>
 
-    <!-- Contenedor donde se cargan las tarjetas -->
-    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+    <!-- TARJETAS RENDERIZADAS DIRECTAMENTE EN EL HTML -->
+    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      
+      <!-- Producto 1: Hot Wheels -->
+      <div class="product-card bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group" data-id="1" data-title="blister 5 coches f1 hot wheels" data-price="12.99">
+        <div class="bg-gray-100 overflow-hidden cursor-pointer aspect-square flex items-center justify-center" onclick="openModal(1)">
+          <img src="images/194735367870-1.jpg" alt="Blister 5 coches F1 Hot Wheels" class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x400/e2e8f0/1e293b?text=Hot+Wheels';">
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <div>
+            <span class="text-[11px] font-semibold text-kiwi-600 uppercase tracking-wider">Juguetes</span>
+            <h3 onclick="openModal(1)" class="font-bold text-sm text-gray-900 line-clamp-2 hover:text-kiwi-600 cursor-pointer transition-colors mt-1">Blister 5 coches F1 Hot Wheels</h3>
+          </div>
+          <div class="flex items-end justify-between pt-2 border-t border-gray-100">
+            <span class="text-lg font-black text-gray-900">12,99 €</span>
+            <span class="px-3.5 py-2 text-xs rounded-xl bg-gray-100 text-gray-400 font-bold flex items-center justify-center gap-2 cursor-not-allowed">Próximamente</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 2: Barbie -->
+      <div class="product-card bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group" data-id="2" data-title="muñeca día en la playa barbie" data-price="19.95">
+        <div class="bg-gray-100 overflow-hidden cursor-pointer aspect-square flex items-center justify-center" onclick="openModal(2)">
+          <img src="images/194735162420-1.jpg" alt="Muñeca Día en la Playa Barbie" class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x400/e2e8f0/1e293b?text=Barbie';">
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <div>
+            <span class="text-[11px] font-semibold text-kiwi-600 uppercase tracking-wider">Juguetes</span>
+            <h3 onclick="openModal(2)" class="font-bold text-sm text-gray-900 line-clamp-2 hover:text-kiwi-600 cursor-pointer transition-colors mt-1">Muñeca Día en la Playa Barbie</h3>
+          </div>
+          <div class="flex items-end justify-between pt-2 border-t border-gray-100">
+            <span class="text-lg font-black text-gray-900">19,95 €</span>
+            <span class="px-3.5 py-2 text-xs rounded-xl bg-gray-100 text-gray-400 font-bold flex items-center justify-center gap-2 cursor-not-allowed">Próximamente</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 3: UNO Flip -->
+      <div class="product-card bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group" data-id="3" data-title="juego cartas uno flip" data-price="13.95">
+        <div class="bg-gray-100 overflow-hidden cursor-pointer aspect-square flex items-center justify-center" onclick="openModal(3)">
+          <img src="images/887961751062-1.jpg" alt="Juego cartas UNO Flip" class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x400/e2e8f0/1e293b?text=UNO+Flip';">
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <div>
+            <span class="text-[11px] font-semibold text-kiwi-600 uppercase tracking-wider">Juguetes</span>
+            <h3 onclick="openModal(3)" class="font-bold text-sm text-gray-900 line-clamp-2 hover:text-kiwi-600 cursor-pointer transition-colors mt-1">Juego cartas UNO Flip</h3>
+          </div>
+          <div class="flex items-end justify-between pt-2 border-t border-gray-100">
+            <span class="text-lg font-black text-gray-900">13,95 €</span>
+            <span class="px-3.5 py-2 text-xs rounded-xl bg-gray-100 text-gray-400 font-bold flex items-center justify-center gap-2 cursor-not-allowed">Próximamente</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
 
     <!-- Sin resultados -->
     <div id="emptyState" class="hidden text-center py-16 bg-white rounded-3xl border border-gray-100 mt-4">
@@ -170,6 +223,112 @@
           </ul>
         </div>
         <div>
+          <h4 class="font-bold text-sm uppercase tracking-wider text-gray-300 mb-4">Ayuda y soporte</h4>
+          <ul class="space-y-2.5 text-xs text-gray-400">
+            <li><a href="mailto:info@thekiwistore.com?subject=Estado%20de%20mi%20pedido" class="hover:text-white transition-colors">Estado de mi pedido</a></li>
+            <li><a href="legal/envios-devoluciones.html" class="hover:text-white transition-colors">Envíos y devoluciones</a></li>
+            <li><a href="mailto:info@thekiwistore.com" class="hover:text-white transition-colors">info@thekiwistore.com</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm uppercase tracking-wider text-gray-300 mb-4">Métodos de pago</h4>
+          <div class="flex flex-wrap gap-2 text-2xl text-gray-300">
+            <i class="fa-brands fa-cc-visa" title="Visa"></i>
+            <i class="fa-brands fa-cc-mastercard" title="Mastercard"></i>
+            <i class="fa-brands fa-cc-paypal" title="PayPal"></i>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+        <p>&copy; 2026 thekiwistore.com. Todos los derechos reservados.</p>
+        <div class="flex gap-4">
+          <a href="legal/privacidad.html" class="hover:underline">Política de privacidad</a>
+          <a href="legal/aviso-legal.html" class="hover:underline">Aviso legal</a>
+          <a href="legal/cookies.html" class="hover:underline">Cookies</a>
+          <a href="legal/envios-devoluciones.html" class="hover:underline">Envíos y devoluciones</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT MODAL Y FILTROS -->
+  <script>
+    const toyProducts = [
+      {
+        id: 1,
+        title: "Blister 5 coches F1 Hot Wheels",
+        price: 12.99,
+        images: ["images/194735367870-1.jpg", "images/194735367870-2.jpg", "images/194735367870-3.jpg", "images/194735367870-4.jpg", "images/194735367870-5.jpg"],
+        description: "Pack de 5 coches de juguete metálicos a escala 1:64, conjunto de 5 coches coleccionables de F1.\n\nAmplía a toda velocidad tu colección de Hot Wheels con un pack de cinco vehículos surtidos a escala 1:64. Cada coche o camión metálico de juguete presenta detalles auténticos y decoraciones llamativas que los niños, las niñas y los coleccionistas adoran.\n\nADVERTENCIA: No conviene para niños menores de 36 meses. Puede generar piezas pequeñas.",
+        stripeLink: ""
+      },
+      {
+        id: 2,
+        title: "Muñeca Día en la Playa Barbie",
+        price: 19.95,
+        images: ["images/194735162420-1.jpg", "images/194735162420-2.jpg", "images/194735162420-3.jpg", "images/194735162420-4.jpg", "images/194735162420-5.jpg", "images/194735162420-6.jpg"],
+        description: "Edad: +3-4 años. Tamaño: 12x32,5x15,2cm. Incluye 1 muñeca Barbie con traje de baño, 1 par de sandalias, 1 pareo, 1 sombrero, 1 bolso y accesorios pequeños variados.\n\nRelájate en la playa con esta muñeca Barbie. Su genial atuendo y sus accesorios temáticos inspirarán a niños y niñas a soñar con todo tipo de historias veraniegas bajo el sol.\n\nADVERTENCIA: No conviene para niños menores de 36 meses.",
+        stripeLink: ""
+      },
+      {
+        id: 3,
+        title: "Juego cartas UNO Flip",
+        price: 13.95,
+        images: ["images/887961751062-1.jpg", "images/887961751062-2.jpg", "images/887961751062-3.jpg", "images/887961751062-4.jpg", "images/887961751062-5.jpg"],
+        description: "Edad: +5-7 años. Tamaño: 14x9x14,5cm.\n\nUNO FLIP! es el juego de cartas clásico que ya conoces con un giro nuevo y emocionante. Una baraja con cartas a doble cara y una carta especial FLIP que le da un giro competitivo a la versión clásica.\n\nNinguna advertencia aplicable.",
+        stripeLink: ""
+      }
+    ];
+
+    function esc(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+    function eur(n) { return n.toFixed(2).replace('.',',')+' €'; }
+
+    function filterProducts() {
+      const d = document.getElementById('searchInput');
+      const m = document.getElementById('searchMobileInput');
+      const term = ((d ? d.value : '') || (m ? m.value : '')).toLowerCase().trim();
+      const cards = document.querySelectorAll('.product-card');
+      const empty = document.getElementById('emptyState');
+      
+      let visible = 0;
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title') || '';
+        if (title.includes(term)) {
+          card.classList.remove('hidden');
+          visible++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (empty) {
+        if (visible === 0) empty.classList.remove('hidden');
+        else empty.classList.add('hidden');
+      }
+    }
+
+    function resetSearch() {
+      const d = document.getElementById('searchInput');
+      const m = document.getElementById('searchMobileInput');
+      if (d) d.value = '';
+      if (m) m.value = '';
+      filterProducts();
+    }
+
+    function changeModalImg(src, btn) {
+      const modalImg = document.getElementById('modalImage');
+      if (modalImg) modalImg.src = src;
+      document.querySelectorAll('#modalGallery button').forEach(b => {
+        b.classList.remove('border-kiwi-600');
+        b.classList.add('border-transparent');
+      });
+      if (btn) {
+        btn.classList.remove('border-transparent');
+        btn.classList.add('border-kiwi-600');
+      }
+    }
+
+    function openModal(id)<div>
           <h4 class="font-bold text-sm uppercase tracking-wider text-gray-300 mb-4">Ayuda y soporte</h4>
           <ul class="space-y-2.5 text-xs text-gray-400">
             <li><a href="mailto:info@thekiwistore.com?subject=Estado%20de%20mi%20pedido" class="hover:text-white transition-colors">Estado de mi pedido</a></li>
