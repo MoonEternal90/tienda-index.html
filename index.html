@@ -1,59 +1,871 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Kiwi Store | Stands, Pegatinas y Productos NFC para Reseñas</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-body {
-font-family: 'Plus Jakarta+ Sans', sans-serif;
-}
-.gradient-brand {
-background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
-}
-.gradient-text {
-background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheKiwiStore - Tu tienda online de confianza</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kiwi: {
+                            50: '#f2fcf5',
+                            100: '#d7f7e2',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                            accent: '#84cc16'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased">
-<!-- Top Notification Bar -->
-<div class="bg-indigo-900 text-indigo-100 text-xs sm:text-sm py-2 px-4 text-center font-medium">
-🚀 ¡Impulsa las valoraciones de tu negocio con tecnología NFC y QR! Envío rápido a toda España.
-</div>
-<!-- Header / Navbar -->
-<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-<div class="flex items-center space-x-3">
-<div class="w-10 h-10 rounded-xl gradient-brand flex items-center justify-center text-white font-extrabold text-xl shadow-md">K</div>
-<span class="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900">The Kiwi <span
-class="gradient-text">Store</span></span>
-</div>
-<nav class="hidden md:flex items-center space-x-8 font-medium text-slate-600">
-<a href="#productos" class="hover:text-indigo-600 transition">Productos</a>
-<a href="#beneficios" class="hover:text-indigo-600 transition">¿Cómo funciona?</a>
-<a href="#contacto" class="hover:text-indigo-600 transition">Contacto</a>
-</nav>
-<div>
-<a href="#productos" class="gradient-brand text-white font-semibold px-5 py-2.5 rounded-full shadow-md hover:opacity-95 transition
-text-sm">Ver Catálogo</a>
-</div>
-</div>
-</header>
-<!-- Hero Section -->
-<section class="relative overflow-hidden py-20 lg:py-28 bg-gradient-to-b from-indigo-50/50 via-white to-slate-50">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-<div class="max-w-3xl mx-auto text-center">
-<span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 mb-6 uppercase
-tracking-wider">
-✨ Soluciones NFC & QR para Negocios
-</span>
-<h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 mb-6 leading-tight">
-Consigue más reseñas de 5 estrellas <span class="gradient-text">con un solo toque</span>
-</h1>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-kiwi-500 selection:text-white">
+
+    <div class="bg-kiwi-900 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium">
+        <span class="inline-block animate-pulse mr-2">🥝</span> ¡Envío gratis en pedidos superiores a 30€! Aprovecha nuestras ofertas de lanzamiento.
+    </div>
+
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-kiwi-600 to-kiwi-accent flex items-center justify-center text-white shadow-md shadow-kiwi-500/20 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-kiwi-bird text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl sm:text-2xl font-black tracking-tight text-gray-900">TheKiwi<span class="text-kiwi-600">Store</span></span>
+                    <span class="block text-[10px] uppercase tracking-widest text-gray-400 font-semibold">Shop & Enjoy</span>
+                </div>
+            </a>
+
+            <!-- Search Bar (Desktop) -->
+            <div class="hidden md:flex flex-1 max-w-md relative">
+                <input type="text" id="searchInput" placeholder="Busca juguetes, material escolar, coleccionables..." 
+                    class="w-full pl-10 pr-4 py-2.5 bg-gray-100 rounded-full border border-transparent focus:border-kiwi-500 focus:bg-white focus:outline-none transition-all text-sm">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-gray-400"></i>
+            </div>
+
+            <!-- Actions: Currency/Language & Cart Button -->
+            <div class="flex items-center gap-3 sm:gap-4">
+                <div class="hidden lg:flex items-center gap-2 text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">
+                    <span>🇪🇸 ES</span>
+                    <span class="text-gray-300">|</span>
+                    <span>EUR €</span>
+                </div>
+
+                <!-- Cart Button -->
+                <button onclick="toggleCart()" class="relative p-2.5 rounded-full bg-gray-100 hover:bg-kiwi-100 hover:text-kiwi-700 transition-colors flex items-center gap-2 text-gray-700">
+                    <i class="fa-solid fa-cart-shopping text-lg"></i>
+                    <span class="hidden sm:inline text-sm font-semibold">Carrito</span>
+                    <span id="cartCount" class="absolute -top-1 -right-1 bg-kiwi-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold shadow">0</span>
+                </button>
+
+                <!-- Mobile menu toggle -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-full bg-gray-100 text-gray-700">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Secondary Search for Mobile -->
+        <div class="md:hidden px-4 pb-3">
+            <div class="relative w-full">
+                <input type="text" id="searchMobileInput" placeholder="Buscar productos..." 
+                    class="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-full border border-transparent focus:border-kiwi-500 focus:bg-white focus:outline-none text-sm">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400"></i>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="bg-gray-50 border-t border-gray-100 overflow-x-auto scrollbar-none">
+            <div class="max-w-7xl mx-auto px-4 flex gap-2 sm:gap-6 py-2 whitespace-nowrap">
+                <button onclick="filterCategory('todos')" class="cat-btn px-4 py-1.5 rounded-full text-sm font-semibold bg-kiwi-600 text-white transition-all shadow-sm">Todos</button>
+                <button onclick="filterCategory('top')" class="cat-btn px-4 py-1.5 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-200 transition-all">🔥 Top Ventas</button>
+                <button onclick="filterCategory('ofertas')" class="cat-btn px-4 py-1.5 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-200 transition-all">⚡ Ofertas</button>
+                <button onclick="filterCategory('juguetes')" class="cat-btn px-4 py-1.5 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-200 transition-all">🧸 Juguetes</button>
+                <button onclick="filterCategory('coleccion')" class="cat-btn px-4 py-1.5 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-200 transition-all">🏆 Colección</button>
+                <button onclick="filterCategory('escolar')" class="cat-btn px-4 py-1.5 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-200 transition-all">🎒 Material Escolar</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+        <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-kiwi-900 via-kiwi-800 to-kiwi-700 text-white shadow-2xl p-8 sm:p-14 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            <div class="relative z-10 max-w-xl space-y-4 text-center md:text-left">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-kiwi-500/30 text-kiwi-100 border border-kiwi-400/30">
+                    <i class="fa-solid fa-bolt text-kiwi-accent"></i> Nueva Temporada 2026
+                </span>
+                <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+                    Todo lo que buscas, al mejor precio en <span class="text-kiwi-accent">TheKiwiStore</span>
+                </h1>
+                <p class="text-gray-200 text-sm sm:text-base">
+                    Descubre nuestra selección estrella en juguetes, coleccionables y material escolar con calidad garantizada y envíos rapidísimos.
+                </p>
+                <div class="pt-2 flex flex-wrap gap-3 justify-center md:justify-start">
+                    <button onclick="filterCategory('ofertas')" class="px-6 py-3 rounded-xl bg-kiwi-accent hover:bg-lime-500 text-gray-900 font-bold transition-all shadow-lg shadow-kiwi-accent/20 flex items-center gap-2">
+                        <i class="fa-solid fa-tags"></i> Ver Ofertas Top
+                    </button>
+                    <button onclick="filterCategory('top')" class="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold transition-all backdrop-blur-sm border border-white/20">
+                        Top Ventas
+                    </button>
+                </div>
+            </div>
+            <div class="relative z-10 flex-shrink-0 w-full md:w-auto flex justify-center">
+                <div class="relative bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-xl max-w-xs text-center space-y-3">
+                    <div class="w-20 h-20 mx-auto bg-kiwi-500/30 rounded-full flex items-center justify-center text-4xl shadow-inner">
+                        🥝
+                    </div>
+                    <h3 class="font-bold text-lg">Garantía TheKiwi</h3>
+                    <p class="text-xs text-gray-300">Pagos 100% seguros, atención al cliente personalizada y devoluciones sencillas.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Micro-benefits Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+            <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-kiwi-50 text-kiwi-600 flex items-center justify-center text-lg flex-shrink-0">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs sm:text-sm">Envío Rápido</h4>
+                    <p class="text-xs text-gray-500">24/48 horas</p>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-kiwi-50 text-kiwi-600 flex items-center justify-center text-lg flex-shrink-0">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs sm:text-sm">Pago Seguro</h4>
+                    <p class="text-xs text-gray-500">Tarjetas y Bizum</p>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-kiwi-50 text-kiwi-600 flex items-center justify-center text-lg flex-shrink-0">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs sm:text-sm">Soporte 24/7</h4>
+                    <p class="text-xs text-gray-500">Ayuda cercana</p>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-kiwi-50 text-kiwi-600 flex items-center justify-center text-lg flex-shrink-0">
+                    <i class="fa-solid fa-rotate-left"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs sm:text-sm">Devolución Fácil</h4>
+                    <p class="text-xs text-gray-500">Sin preguntas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+            <div>
+                <h2 id="sectionTitle" class="text-2xl font-bold text-gray-900">Catálogo General</h2>
+                <p id="sectionSubtitle" class="text-sm text-gray-500">Explora nuestros productos seleccionados cuidadosamente.</p>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="text-sm text-gray-500 font-medium">Ordenar por:</span>
+                <select id="sortSelect" onchange="sortProducts()" class="bg-white border border-gray-200 text-sm rounded-xl px-3 py-2 focus:outline-none focus:border-kiwi-500">
+                    <option value="featured">Destacados</option>
+                    <option value="low-high">Precio: menor a mayor</option>
+                    <option value="high-low">Precio: mayor a menor</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Dynamic products injected via JS -->
+        </div>
+
+        <!-- Empty state -->
+        <div id="emptyState" class="hidden text-center py-16 bg-white rounded-3xl border border-gray-100 mt-4">
+            <div class="text-5xl mb-3">🔍</div>
+            <h3 class="text-lg font-bold text-gray-800">No encontramos productos</h3>
+            <p class="text-sm text-gray-500 mt-1">Prueba a buscar con otra palabra o cambia de categoría.</p>
+            <button onclick="filterCategory('todos')" class="mt-4 px-5 py-2 bg-kiwi-600 text-white text-sm font-semibold rounded-xl">Ver todos los productos</button>
+        </div>
+    </main>
+
+    <div id="cartOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden transition-opacity" onclick="toggleCart()"></div>
+    <div id="cartDrawer" class="fixed top-0 right-0 h-full w-full sm:w-96 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="p-4 sm:p-6 border-b border-gray-100 flex items-center justify-between bg-gray-50">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-cart-shopping text-kiwi-600"></i>
+                <h3 class="font-bold text-lg">Tu Carrito</h3>
+                <span id="drawerItemCount" class="bg-kiwi-100 text-kiwi-800 text-xs font-bold px-2 py-0.5 rounded-full">0</span>
+            </div>
+            <button onclick="toggleCart()" class="p-2 text-gray-400 hover:text-gray-700 rounded-full hover:bg-gray-200 transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Cart Items List -->
+        <div id="cartItemsList" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 divide-y divide-gray-100">
+            <!-- Injected via JS -->
+        </div>
+
+        <!-- Cart Footer / Summary -->
+        <div id="cartFooter" class="p-4 sm:p-6 border-t border-gray-100 bg-gray-50 space-y-3">
+            <div class="space-y-1.5 text-sm">
+                <div class="flex justify-between text-gray-600">
+                    <span>Subtotal</span>
+                    <span id="cartSubtotal">0.00 €</span>
+                </div>
+                <div class="flex justify-between text-gray-600">
+                    <span>Envío estimado</span>
+                    <span id="cartShipping">Gratis</span>
+                </div>
+                <div class="flex justify-between font-bold text-lg text-gray-900 pt-2 border-t border-gray-200">
+                    <span>Total</span>
+                    <span id="cartTotal" class="text-kiwi-700">0.00 €</span>
+                </div>
+            </div>
+
+            <button onclick="proceedToCheckout()" class="w-full py-3.5 px-4 rounded-xl bg-kiwi-600 hover:bg-kiwi-700 text-white font-bold text-center transition-all shadow-lg shadow-kiwi-600/30 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-lock"></i> Proceder al Pago Seguro
+            </button>
+            <p class="text-[11px] text-center text-gray-400">Pagos cifrados y seguros. Preparado para Stripe, PayPal y Bizum.</p>
+        </div>
+    </div>
+
+    <div id="productModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full overflow-hidden relative animate-in fade-in zoom-in duration-200" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/80 hover:bg-gray-100 text-gray-700 flex items-center justify-center shadow transition-all">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="bg-gray-100 flex items-center justify-center p-6 relative">
+                    <img id="modalImage" src="" alt="Producto" class="max-h-64 object-contain rounded-xl">
+                    <span id="modalBadge" class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white"></span>
+                </div>
+                <div class="p-6 sm:p-8 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <span id="modalCategory" class="text-xs font-semibold text-kiwi-600 uppercase tracking-wider"></span>
+                        <h3 id="modalTitle" class="text-xl sm:text-2xl font-bold text-gray-900 leading-snug"></h3>
+                        <div class="flex items-center gap-3">
+                            <span id="modalPrice" class="text-2xl font-black text-kiwi-700"></span>
+                            <span id="modalOldPrice" class="text-sm text-gray-400 line-through"></span>
+                        </div>
+                        <p id="modalDescription" class="text-sm text-gray-600 leading-relaxed"></p>
+                    </div>
+
+                    <div class="pt-6 space-y-4">
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm font-medium text-gray-700">Cantidad:</span>
+                            <div class="flex items-center border border-gray-200 rounded-xl overflow-hidden">
+                                <button onclick="decrementModalQty()" class="px-3 py-1.5 bg-gray-50 hover:bg-gray-100 text-gray-600 font-bold">-</button>
+                                <span id="modalQty" class="w-10 text-center text-sm font-semibold">1</span>
+                                <button onclick="incrementModalQty()" class="px-3 py-1.5 bg-gray-50 hover:bg-gray-100 text-gray-600 font-bold">+</button>
+                            </div>
+                        </div>
+
+                        <button id="modalAddBtn" onclick="addModalToCart()" class="w-full py-3 px-4 rounded-xl bg-kiwi-600 hover:bg-kiwi-700 text-white font-bold transition-all shadow-md shadow-kiwi-600/20 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-cart-plus"></i> Añadir al Carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="checkoutModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full p-6 sm:p-8 relative space-y-6">
+            <div class="text-center space-y-2">
+                <div class="w-14 h-14 bg-kiwi-100 text-kiwi-600 rounded-full flex items-center justify-center text-2xl mx-auto shadow-inner">
+                    <i class="fa-solid fa-credit-card"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Pasarela de Pago TheKiwiStore</h3>
+                <p class="text-xs text-gray-500">Selecciona tu método de pago preferido para completar el pedido en thekiwistore.com</p>
+            </div>
+
+            <div class="space-y-3">
+                <label class="flex items-center justify-between p-4 border-2 border-kiwi-500 bg-kiwi-50/50 rounded-2xl cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-credit-card text-kiwi-600 text-xl"></i>
+                        <div>
+                            <span class="block font-bold text-sm text-gray-900">Tarjeta de Crédito / Débito</span>
+                            <span class="block text-xs text-gray-500">Visa, Mastercard, Apple Pay</span>
+                        </div>
+                    </div>
+                    <input type="radio" name="payment" checked class="text-kiwi-600 focus:ring-kiwi-500">
+                </label>
+
+                <label class="flex items-center justify-between p-4 border border-gray-200 hover:border-gray-300 rounded-2xl cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-brands fa-paypal text-blue-600 text-xl"></i>
+                        <div>
+                            <span class="block font-bold text-sm text-gray-900">PayPal</span>
+                            <span class="block text-xs text-gray-500">Pago rápido y protegido</span>
+                        </div>
+                    </div>
+                    <input type="radio" name="payment" class="text-kiwi-600 focus:ring-kiwi-500">
+                </label>
+
+                <label class="flex items-center justify-between p-4 border border-gray-200 hover:border-gray-300 rounded-2xl cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-mobile-screen-button text-emerald-600 text-xl"></i>
+                        <div>
+                            <span class="block font-bold text-sm text-gray-900">Bizum</span>
+                            <span class="block text-xs text-gray-500">Instantáneo desde el móvil</span>
+                        </div>
+                    </div>
+                    <input type="radio" name="payment" class="text-kiwi-600 focus:ring-kiwi-500">
+                </label>
+            </div>
+
+            <button onclick="completeCheckout()" class="w-full py-3.5 rounded-xl bg-kiwi-600 hover:bg-kiwi-700 text-white font-bold transition-all shadow-lg shadow-kiwi-600/30">
+                Pagar <span id="checkoutTotalAmount">0.00 €</span>
+            </button>
+
+            <button onclick="closeCheckoutModal()" class="w-full py-2 text-sm text-gray-500 hover:text-gray-800 font-medium">
+                Volver al carrito
+            </button>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-32 opacity-0 transition-all duration-300 bg-gray-900 text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3">
+        <div class="w-7 h-7 rounded-full bg-kiiss-500 bg-kiwi-500 flex items-center justify-center text-white text-sm">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <span id="toastMessage" class="text-sm font-medium">Producto añadido al carrito</span>
+    </div>
+
+    <footer class="bg-gray-900 text-white mt-16 pt-12 pb-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-kiwi-600 to-kiwi-accent flex items-center justify-center text-white">
+                            <i class="fa-solid fa-kiwi-bird text-lg"></i>
+                        </div>
+                        <span class="text-xl font-bold">TheKiwiStore</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Tu tienda online independiente de confianza para juguetes, coleccionismo y material escolar. Calidad y servicio al mejor precio.
+                    </p>
+                    <div class="flex gap-3 text-lg text-gray-400">
+                        <a href="#" class="hover:text-kiwi-400 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="hover:text-kiwi-400 transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#" class="hover:text-kiwi-400 transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-gray-300 mb-4">Categorías</h4>
+                    <ul class="space-y-2.5 text-xs text-gray-400">
+                        <li><a href="#" onclick="filterCategory('top')" class="hover:text-white transition-colors">Top Ventas</a></li>
+                        <li><a href="#" onclick="filterCategory('ofertas')" class="hover:text-white transition-colors">Ofertas Especiales</a></li>
+                        <li><a href="#" onclick="filterCategory('juguetes')" class="hover:text-white transition-colors">Juguetes Infantiles</a></li>
+                        <li><a href="#" onclick="filterCategory('coleccion')" class="hover:text-white transition-colors">Artículos de Colección</a></li>
+                        <li><a href="#" onclick="filterCategory('escolar')" class="hover:text-white transition-colors">Material Escolar</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-gray-300 mb-4">Ayuda y Soporte</h4>
+                    <ul class="space-y-2.5 text-xs text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Estado de mi pedido</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Envíos y Entregas</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Devoluciones y Reembolsos</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contacto directo</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-gray-300 mb-4">Métodos de Pago</h4>
+                    <p class="text-xs text-gray-400 mb-3">Aceptamos múltiples formas de pago seguras:</p>
+                    <div class="flex flex-wrap gap-2 text-2xl text-gray-300">
+                        <i class="fa-brands fa-cc-visa" title="Visa"></i>
+                        <i class="fa-brands fa-cc-mastercard" title="Mastercard"></i>
+                        <i class="fa-brands fa-cc-paypal" title="PayPal"></i>
+                        <i class="fa-solid fa-shield-halved text-kiwi-500" title="Bizum / Seguro"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+                <p>&copy; 2026 thekiwistore.com. Todos los derechos reservados. Libre de comisiones de Shopify.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:underline">Política de Privacidad</a>
+                    <a href="#" class="hover:underline">Aviso Legal</a>
+                    <a href="#" class="hover:underline">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Catálogo completo con productos para thekiwistore.com
+        const products = [
+            {
+                id: 1,
+                title: "Set de Bloques de Construcción Espacial",
+                category: "juguetes",
+                price: 29.99,
+                oldPrice: 39.99,
+                tag: "top",
+                tagText: "Top Ventas",
+                tagColor: "bg-amber-500",
+                image: "https://placehold.co/400x400/e2e8f0/1e293b?text=Juguete+Espacial",
+                description: "Construye tu propia estación espacial con más de 500 piezas compatibles. Estimula la creatividad y la habilidad espacial de los más pequeños.",
+                featured: true
+            },
+            {
+                id: 2,
+                title: "Figura Coleccionable Edición Limitada 'KiwiHero'",
+                category: "coleccion",
+                price: 45.00,
+                oldPrice: 60.00,
+                tag: "oferta",
+                tagText: "-25%",
+                tagColor: "bg-red-500",
+                image: "https://placehold.co/400x400/e2e8f0/1e293b?text=Figura+Coleccion",
+                description: "Figura de coleccionista pintada a mano con acabados premium. Incluye peana numerada y certificado de autenticidad exclusivo de thekiwistore.",
+                featured: true
+            },
+            {
+                id: 3,
+                title: "Mochila Escolar Ergonómica 'KiwiColor'",
+                category: "escolar",
+                price: 24.95,
+                oldPrice: 32.00,
+                tag: "nuevo",
+                tagText: "Nuevo",
+                tagColor: "bg-kiwi-600",
+                image: "https://placehold.co/400x400/e2e8f0/1e293b?text=Mochila+Escolar",
+                description: "Mochila resistente al agua con compartimento acolchado para portátil, múltiples bolsillos y soporte lumbar transpirable para el día a día.",
+                featured: true
+            },
+            {
+                id: 4,
+                title: "Coche Teledirigido All-Terrain 4x4",
+                category: "juguetes",
+                price: 34.99,
+                oldPrice: 49.99,
+                tag: "oferta",
+                tagText: "-30%",
+                tagColor: "bg-red-500",
+                image: "https://placehold.co/400x400/e2e8f0/1e293b?text=Coche+RC",
+                description: "Coche todoterreno con suspensión independiente y tracción en las cuatro ruedas. Batería recargable de larga duración y mando ergonómico.",
+                featured: true
+            },
+            {
+                id: 5,
+                title: "Estuche Escolar Completo 3 Pisos",
+                category: "escolar",
+                price: 14.99,
+                oldPrice: 19.99,
+                tag: "top",
+                tagText: "Top Ventas",
+                tagColor: "bg-amber-500",
+                image: "https://placehold.co/400x400/e2e8f0/1e293b?text=Estuche+Escolar",
+                description: "Incluye lápices de colores, rotuladores, regla, sacapuntas y bolígrafos de alta calidad. Todo lo necesario organizado y listo para clase.",
+                featured: false
+            },
+            {
+                id: 6,
+                title: "Lámpara LED Decorativa 'Kiwi Glow'",
+                category: "coleccion",
+                price: 19.99,
+                oldPrice: null,
+                tag: "nuevo",
+                tagText: "Nuevo",
+                tagColor: "bg-kiwi-600",
+                image: "https://placehold.co/400x400/e2e8f0/1e293b?text=Lampara+LED",
+                description: "Lámpara de ambiente con cambio de 16 colores táctil y control remoto. Ideal para habitaciones infantiles o escritorios modernos.",
+                featured: false
+            },
+            {
+                id: 7,
+                title: "Juego de Mesa Familiar 'Estrategia Kiwica'",
+                category: "juguetes",
+                price: 22.50,
+                oldPrice: 28.00,
+                tag: "oferta",
+                tagText: "Oferta",
+                tagColor: "bg-red-500",
+                image: "https://placehold.co/400x400/e2e8f0/1e293b?text=Juego+de+Mesa",
+                description: "Divertido juego de estrategia rápida para de 2 a 6 jugadores. Horas garantizadas de risas y competencia sana en familia.",
+                featured: false
+            },
+            {
+                id: 8,
+                title: "Pack de Cuadernos Premium Tapa Dura (4 uds)",
+                category: "escolar",
+                price: 12.00,
+                oldPrice: 15.00,
+                tag: "top",
+                tagText: "Top Ventas",
+                tagColor: "bg-amber-500",
+                image: "https://placehold.co/400x400/e2e8f0/1e293b?text=Cuadernos+Pack",
+                description: "Papel de alto gramaje (100g) que no traspasa la tinta. Cuadros de 4mm y diseño elegante para apuntes impecables.",
+                featured: false
+            }
+        ];
+
+        let cart = [];
+        let currentCategory = 'todos';
+        let currentModalProduct = null;
+        let modalQty = 1;
+
+        // Inicializar la aplicación al cargar la página
+        window.onload = function() {
+            renderProducts(products);
+            setupSearchListeners();
+        };
+
+        // Renderizar productos en la rejilla
+        function renderProducts(items) {
+            const grid = document.getElementById('productGrid');
+            const emptyState = document.getElementById('emptyState');
+            grid.innerHTML = '';
+
+            if (items.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            items.forEach(product => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group";
+                
+                let badgeHTML = product.tag ? `<span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-white ${product.tagColor} shadow">${product.tagText}</span>` : '';
+                let oldPriceHTML = product.oldPrice ? `<span class="text-xs text-gray-400 line-through">${product.oldPrice.toFixed(2)} €</span>` : '';
+
+                card.innerHTML = `
+                    <div class="relative bg-gray-100 overflow-hidden cursor-pointer aspect-square" onclick="openModal(${product.id})">
+                        <img src="${product.image}" alt="${product.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/400x400/e2e8f0/1e293b?text=TheKiwiStore'">
+                        ${badgeHTML}
+                        <button onclick="event.stopPropagation(); quickAdd(${product.id})" class="absolute bottom-3 right-3 w-10 h-10 rounded-xl bg-white text-gray-800 hover:bg-kiwi-600 hover:text-white shadow-md flex items-center justify-center transition-all opacity-0 group-hover:opacity-100">
+                            <i class="fa-solid fa-cart-plus"></i>
+                        </button>
+                    </div>
+                    <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+                        <div>
+                            <span class="text-[11px] font-semibold text-kiwi-600 uppercase tracking-wider">${formatCategoryName(product.category)}</span>
+                            <h3 onclick="openModal(${product.id})" class="font-bold text-sm text-gray-900 line-clamp-2 hover:text-kiwi-600 cursor-pointer transition-colors mt-1">${product.title}</h3>
+                        </div>
+                        <div class="flex items-end justify-between pt-2 border-t border-gray-100">
+                            <div>
+                                <span class="text-lg font-black text-gray-900">${product.price.toFixed(2)} €</span>
+                                ${oldPriceHTML}
+                            </div>
+                            <button onclick="quickAdd(${product.id})" class="px-3.5 py-2 rounded-xl bg-kiwi-50 hover:bg-kiwi-600 text-kiwi-700 hover:text-white text-xs font-bold transition-all flex items-center gap-1.5">
+                                <i class="fa-solid fa-plus"></i> Añadir
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function formatCategoryName(cat) {
+            const names = {
+                juguetes: 'Juguetes',
+                coleccion: 'Colección',
+                escolar: 'Material Escolar',
+                top: 'Top Ventas',
+                ofertas: 'Ofertas'
+            };
+            return names[cat] || cat;
+        }
+
+        // Filtrado por categorías
+        function filterCategory(category) {
+            currentCategory = category;
+            
+            // Actualizar botones de categoría
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.className = "cat-btn px-4 py-1.5 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-200 transition-all";
+            });
+            event.target.className = "cat-btn px-4 py-1.5 rounded-full text-sm font-semibold bg-kiwi-600 text-white transition-all shadow-sm";
+
+            let filtered = products;
+            let title = "Catálogo General";
+            let subtitle = "Explora nuestros productos seleccionados cuidadosamente.";
+
+            if (category === 'top') {
+                filtered = products.filter(p => p.tag === 'top' || p.category === 'top' || p.featured);
+                title = "🔥 Top Ventas";
+                subtitle = "Los artículos preferidos por nuestros clientes en thekiwistore.com";
+            } else if (category === 'ofertas') {
+                filtered = products.filter(p => p.oldPrice && p.oldPrice > p.price);
+                title = "⚡ Ofertas Especiales";
+                subtitle = "Aprovecha descuentos únicos por tiempo limitado.";
+            } else if (category === 'juguetes') {
+                filtered = products.filter(p => p.category === 'juguetes');
+                title = "🧸 Juguetes Infantiles";
+                subtitle = "Diversión, aprendizaje y entretenimiento seguro.";
+            } else if (category === 'coleccion') {
+                filtered = products.filter(p => p.category === 'coleccion');
+                title = "🏆 Artículos de Colección";
+                subtitle = "Piezas exclusivas para verdaderos entusiastas.";
+            } else if (category === 'escolar') {
+                filtered = products.filter(p => p.category === 'escolar');
+                title = "🎒 Material Escolar";
+                subtitle = "Todo lo necesario para el estudio con estilo y calidad.";
+            }
+
+            document.getElementById('sectionTitle').innerText = title;
+            document.getElementById('sectionSubtitle').innerText = subtitle;
+            renderProducts(filtered);
+        }
+
+        // Búsqueda en tiempo real
+        function setupSearchListeners() {
+            const handleSearch = (e) => {
+                const term = e.target.value.toLowerCase().trim();
+                if (!term) {
+                    renderProducts(products);
+                    return;
+                }
+                const results = products.filter(p => 
+                    p.title.toLowerCase().includes(term) || 
+                    p.description.toLowerCase().includes(term) ||
+                    p.category.toLowerCase().includes(term)
+                );
+                renderProducts(results);
+            };
+
+            document.getElementById('searchInput').addEventListener('input', handleSearch);
+            document.getElementById('searchMobileInput').addEventListener('input', handleSearch);
+        }
+
+        // Ordenamiento
+        function sortProducts() {
+            const val = document.getElementById('sortSelect').value;
+            let currentList = [...products];
+            
+            if (val === 'low-high') {
+                currentList.sort((a, b) => a.price - b.price);
+            } else if (val === 'high-low') {
+                currentList.sort((a, b) => b.price - a.price);
+            }
+            renderProducts(currentList);
+        }
+
+        // Modal de Detalles
+        function openModal(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+            currentModalProduct = product;
+            modalQty = 1;
+
+            document.getElementById('modalImage').src = product.image;
+            document.getElementById('modalCategory').innerText = formatCategoryName(product.category);
+            document.getElementById('modalTitle').innerText = product.title;
+            document.getElementById('modalPrice').innerText = product.price.toFixed(2) + ' €';
+            document.getElementById('modalOldPrice').innerText = product.oldPrice ? product.oldPrice.toFixed(2) + ' €' : '';
+            document.getElementById('modalDescription').innerText = product.description;
+            document.getElementById('modalQty').innerText = modalQty;
+
+            const badge = document.getElementById('modalBadge');
+            if (product.tag) {
+                badge.className = `absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white ${product.tagColor} shadow`;
+                badge.innerText = product.tagText;
+                badge.style.display = 'block';
+            } else {
+                badge.style.display = 'none';
+            }
+
+            document.getElementById('productModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.add('hidden');
+        }
+
+        function incrementModalQty() {
+            modalQty++;
+            document.getElementById('modalQty').innerText = modalQty;
+        }
+
+        function decrementModalQty() {
+            if (modalQty > 1) {
+                modalQty--;
+                document.getElementById('modalQty').innerText = modalQty;
+            }
+        }
+
+        function addModalToCart() {
+            if (!currentModalProduct) return;
+            addToCart(currentModalProduct.id, modalQty);
+            closeModal();
+        }
+
+        function quickAdd(id) {
+            addToCart(id, 1);
+        }
+
+        // Lógica del Carrito
+        function addToCart(id, qty) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.qty += qty;
+            } else {
+                cart.push({
+                    id: product.id,
+                    title: product.title,
+                    price: product.price,
+                    image: product.image,
+                    qty: qty
+                });
+            }
+
+            updateCartUI();
+            showToast(`¡${product.title} añadido al carrito!`);
+        }
+
+        function updateCartItemQty(id, change) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+            item.qty += change;
+            if (item.qty <= 0) {
+                cart = cart.filter(i => i.id !== id);
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(i => i.id !== id);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cartCount').innerText = totalCount;
+            document.getElementById('drawerItemCount').innerText = totalCount;
+
+            const listContainer = document.getElementById('cartItemsList');
+            listContainer.innerHTML = '';
+
+            if (cart.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="text-center py-12 space-y-3">
+                        <div class="text-4xl">🛒</div>
+                        <p class="text-sm font-medium text-gray-500">Tu carrito está vacío</p>
+                        <button onclick="toggleCart()" class="px-4 py-2 bg-kiwi-100 text-kiwi-800 text-xs font-bold rounded-xl">Empezar a comprar</button>
+                    </div>
+                `;
+                document.getElementById('cartSubtotal').innerText = '0.00 €';
+                document.getElementById('cartTotal').innerText = '0.00 €';
+                return;
+            }
+
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                subtotal += item.price * item.qty;
+                const row = document.createElement('div');
+                row.className = "flex items-center gap-3 pt-4 first:pt-0";
+                row.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" class="w-16 h-16 object-cover rounded-xl bg-gray-100 flex-shrink-0">
+                    <div class="flex-1 min-w-0">
+                        <h4 class="font-bold text-xs text-gray-900 truncate">${item.title}</h4>
+                        <p class="text-xs font-semibold text-kiwi-700 mt-0.5">${item.price.toFixed(2)} €</p>
+                        <div class="flex items-center gap-2 mt-2">
+                            <div class="flex items-center border border-gray-200 rounded-lg overflow-hidden text-xs">
+                                <button onclick="updateCartItemQty(${item.id}, -1)" class="px-2 py-0.5 bg-gray-50 hover:bg-gray-100 font-bold">-</button>
+                                <span class="w-6 text-center font-medium">${item.qty}</span>
+                                <button onclick="updateCartItemQty(${item.id}, 1)" class="px-2 py-0.5 bg-gray-50 hover:bg-gray-100 font-bold">+</button>
+                            </div>
+                            <button onclick="removeFromCart(${item.id})" class="text-gray-400 hover:text-red-500 text-xs transition-colors">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                listContainer.appendChild(row);
+            });
+
+            document.getElementById('cartSubtotal').innerText = subtotal.toFixed(2) + ' €';
+            const shipping = subtotal >= 30 || subtotal === 0 ? 0 : 3.99;
+            document.getElementById('cartShipping').innerText = shipping === 0 ? 'Gratis' : shipping.toFixed(2) + ' €';
+            
+            const total = subtotal + (subtotal > 0 && subtotal < 30 ? 3.99 : 0);
+            document.getElementById('cartTotal').innerText = total.toFixed(2) + ' €';
+        }
+
+        function toggleCart() {
+            const drawer = document.getElementById('cartDrawer');
+            const overlay = document.getElementById('cartOverlay');
+            
+            if (drawer.classList.contains('translate-x-full')) {
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+            } else {
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        function toggleMobileMenu() {
+            // Acción rápida para abrir barra de búsqueda móvil
+            document.getElementById('searchMobileInput').focus();
+        }
+
+        // Sistema de Toast de notificaciones
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').innerText = msg;
+            toast.classList.remove('translate-y-32', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-32', 'opacity-0');
+            }, 3000);
+        }
+
+        // Pasarela de pago simulada
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                showToast("Tu carrito está vacío");
+                return;
+            }
+            const totalText = document.getElementById('cartTotal').innerText;
+            document.getElementById('checkoutTotalAmount').innerText = totalText;
+            toggleCart();
+            document.getElementById('checkoutModal').classList.remove('hidden');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.add('hidden');
+        }
+
+        function completeCheckout() {
+            closeCheckoutModal();
+            cart = [];
+            updateCartUI();
+            showToast("¡Pedido realizado con éxito! Gracias por confiar en thekiwistore.com");
+        }
+    </script>
+</body>
+</html>
