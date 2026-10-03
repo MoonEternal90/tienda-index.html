@@ -12,35 +12,43 @@
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
-    .gradient-brand {
-      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
-    }
-    .gradient-text {
-      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    /* Fondo de la tienda */
+    .hero-bg {
+        background-image: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
     }
   </style>
 </head>
-<body class="bg-slate-900 text-slate-100 antialiased min-h-screen flex items-center justify-center p-4">
+<body class="hero-bg text-slate-100 antialiased min-h-screen flex items-center justify-center p-4">
 
-  <div class="max-w-md w-full bg-slate-800/80 backdrop-blur-md rounded-3xl shadow-2xl p-8 text-center border border-slate-700/60">
-    <div class="w-16 h-16 rounded-2xl gradient-brand flex items-center justify-center text-white font-extrabold text-3xl shadow-lg mx-auto mb-6">K</div>
+  <div class="max-w-4xl w-full text-center">
     
-    <span class="inline-block px-3.5 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300 mb-4 uppercase tracking-wider">
-      🚀 Próximamente
-    </span>
+    <!-- CONTENEDOR DEL LOGO (Aquí está tu imagen) -->
+    <div class="mb-12 flex justify-center items-center">
+        <img 
+            src="URL_DE_TU_IMAGEN_EN_GITHUB.png" 
+            alt="Logo The Kiwi Store" 
+            class="h-auto max-w-full md:max-w-2xl drop-shadow-2xl"
+            style="filter: drop-shadow(0 25px 25px rgba(0,0,0,0.5));"
+        >
+    </div>
     
-    <h1 class="text-3xl font-extrabold text-white mb-3">
-      The Kiwi <span class="gradient-text">Store</span>
-    </h1>
-    
-    <p class="text-slate-300 text-sm mb-8 leading-relaxed">
-      Estamos trabajando en mejorar la web para traerte la mejor experiencia muy pronto. ¡Vuelve a visitarnos en unos días!
-    </p>
+    <!-- MENSAJE DE MANTENIMIENTO -->
+    <div class="max-w-2xl mx-auto bg-slate-800/50 backdrop-blur-lg rounded-3xl shadow-2xl p-8 border border-slate-700/60">
+        <span class="inline-block px-4 py-1.5 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-300 mb-5 uppercase tracking-wider border border-emerald-500/20">
+          🚀 Lanzamiento Inminente
+        </span>
+        
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-3 tracking-tight">
+          Estamos puliendo los últimos detalles.
+        </h1>
+        
+        <p class="text-slate-300 text-lg mb-10 leading-relaxed">
+          El superhéroe kiwi está preparando todo para que **TheKiwiStore.com** sea espectacular. ¡Vuelve a visitarnos muy pronto!
+        </p>
 
-    <div class="pt-6 border-t border-slate-700/60 text-xs text-slate-400">
-      &copy; 2026 The Kiwi Store. Todos los derechos reservados.
+        <div class="pt-6 border-t border-slate-700/60 text-sm text-slate-400">
+          &copy; 2026 The Kiwi Store. Todos los derechos reservados.
+        </div>
     </div>
   </div>
 
