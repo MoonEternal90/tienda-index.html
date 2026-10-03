@@ -11,16 +11,34 @@
     <link rel="icon" href="images/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     
-    <!-- Librerías Externas -->
+    <!-- Tailwind CDN + Configuración de Colores Integrada -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              kiwi: {
+                50: '#f2fcf5',
+                100: '#d7f7e2',
+                500: '#10b981',
+                600: '#059669',
+                700: '#047857',
+                800: '#065f46',
+                900: '#064e3b',
+                accent: '#84cc16'
+              }
+            }
+          }
+        }
+      }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Hoja de Estilos CSS desde la carpeta css/ -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-kiwi-500 selection:text-white">
 
-  <!-- BARRA SUPERIOR DE AVISO -->
+  <!-- BARRA SUPERIOR -->
   <div class="bg-kiwi-900 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium">
     <img src="images/kiwi-logo.svg" alt="" class="inline-block w-5 h-5 mr-2 align-middle rounded" onerror="this.style.display='none'"> 
     Envío gratis en pedidos a partir de 50 € · Envíos a España peninsular
@@ -67,13 +85,12 @@
 
   <!-- BANNER DE LA SECCIÓN -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-    <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-kiwi-900 via-kiwi-800 to-kiwi-700 text-white shadow-xl p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="relative rounded-3xl overflow-hidden bg-kiwi-900 text-white shadow-xl p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="relative z-10 space-y-2 text-center md:text-left">
         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-kiwi-500/30 text-kiwi-100 border border-kiwi-400/30">
           🧸 Sección de Juguetes
         </span>
-        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight">Diversión y Aprendizaje</h1>
+        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">Diversión y Aprendizaje</h1>
         <p class="text-gray-200 text-xs sm:text-sm max-w-xl">Encuentra los mejores vehículos, muñecas, juegos de mesa y juguetes para regalar o disfrutar en familia.</p>
       </div>
     </div>
@@ -156,6 +173,166 @@
           <h4 class="font-bold text-sm uppercase tracking-wider text-gray-300 mb-4">Ayuda y soporte</h4>
           <ul class="space-y-2.5 text-xs text-gray-400">
             <li><a href="mailto:info@thekiwistore.com?subject=Estado%20de%20mi%20pedido" class="hover:text-white transition-colors">Estado de mi pedido</a></li>
+            <li><a href="legal/envios-devoluciones.html" class="hover:text-white transition-colors">Envíos y devoluciones</a></li>
+            <li><a href="mailto:info@thekiwistore.com" class="hover:text-white transition-colors">info@thekiwistore.com</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm uppercase tracking-wider text-gray-300 mb-4">Métodos de pago</h4>
+          <div class="flex flex-wrap gap-2 text-2xl text-gray-300">
+            <i class="fa-brands fa-cc-visa" title="Visa"></i>
+            <i class="fa-brands fa-cc-mastercard" title="Mastercard"></i>
+            <i class="fa-brands fa-cc-paypal" title="PayPal"></i>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+        <p>&copy; 2026 thekiwistore.com. Todos los derechos reservados.</p>
+        <div class="flex gap-4">
+          <a href="legal/privacidad.html" class="hover:underline">Política de privacidad</a>
+          <a href="legal/aviso-legal.html" class="hover:underline">Aviso legal</a>
+          <a href="legal/cookies.html" class="hover:underline">Cookies</a>
+          <a href="legal/envios-devoluciones.html" class="hover:underline">Envíos y devoluciones</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT CON DATOS DE PRODUCTOS Y LÓGICA -->
+  <script>
+    const products = [
+      {
+        id: 1,
+        title: "Blister 5 coches F1 Hot Wheels",
+        category: "juguetes",
+        price: 12.99,
+        images: [
+          "images/194735367870-1.jpg",
+          "images/194735367870-2.jpg",
+          "images/194735367870-3.jpg",
+          "images/194735367870-4.jpg",
+          "images/194735367870-5.jpg"
+        ],
+        description: "Pack de 5 coches de juguete metálicos a escala 1:64, conjunto de 5 coches coleccionables de F1.\n\nAmplía a toda velocidad tu colección de Hot Wheels con un pack de cinco vehículos surtidos a escala 1:64. Cada coche o camión metálico de juguete presenta detalles auténticos y decoraciones llamativas que los niños, las niñas y los coleccionistas adoran. Estos packs tienen un tema específico para atraer tanto a coleccionistas como a entusiastas de los coches. Son perfectos para jugar con ellos o exhibirlos, y los niños, las niñas y los coleccionistas querrán hacerse con todos ellos. (Cada pack se vende por separado. Sujeto a disponibilidad). Los estilos, los colores y la decoración pueden variar.\n\nADVERTENCIA: No conviene para niños menores de 36 meses. Puede generar piezas pequeñas.",
+        stripeLink: ""
+      },
+      {
+        id: 2,
+        title: "Muñeca Día en la Playa Barbie",
+        category: "juguetes",
+        price: 19.95,
+        images: [
+          "images/194735162420-1.jpg",
+          "images/194735162420-2.jpg",
+          "images/194735162420-3.jpg",
+          "images/194735162420-4.jpg",
+          "images/194735162420-5.jpg",
+          "images/194735162420-6.jpg"
+        ],
+        description: "Edad: +3-4 años. Tamaño: 12x32,5x15,2cm. Incluye 1 muñeca Barbie con traje de baño, 1 par de sandalias, 1 pareo, 1 sombrero, 1 bolso y accesorios pequeños variados. La muñeca no puede tenerse en pie por sí sola. Los colores y la decoración pueden variar.\n\nRelájate en la playa con esta muñeca Barbie. Su genial atuendo y sus accesorios temáticos inspirarán a niños y niñas a soñar con todo tipo de historias veraniegas bajo el sol. La muñeca Barbie lleva un bonito bañador de rayas rosas y blancas con un pareo de lunares transparente atado a la cintura. Los pendientes de aro dorados y las sandalias sin puntera añaden un toque extra de ternura. Como accesorios adicionales para el estilismo se incluyen un sombrero de ala ancha, unas gafas de sol de ojo de gato, un collar dorado y varias pulseras. Su bolso rosa es perfecto para guardar su protección solar, su barra de labios y su smartphone. El cono de helado de menta se engancha a su mano para posar de forma realista.\n\nLa muñeca Barbie con temática playera es un regalo precioso para todos los amantes del mar y de la moda. Descubre otros muñecos, juguetes y conjuntos de Barbie para obtener más ideas de regalos divertidos. Se venden por separado y están sujetos a disponibilidad.\n\nADVERTENCIA: No conviene para niños menores de 36 meses.",
+        stripeLink: ""
+      },
+      {
+        id: 3,
+        title: "Juego cartas UNO Flip",
+        category: "juguetes",
+        price: 13.95,
+        images: [
+          "images/887961751062-1.jpg",
+          "images/887961751062-2.jpg",
+          "images/887961751062-3.jpg",
+          "images/887961751062-4.jpg",
+          "images/887961751062-5.jpg"
+        ],
+        description: "Edad: +5-7 años. Tamaño: 14x9x14,5cm.\n\nUNO FLIP! es el juego de cartas clásico que ya conoces con un giro nuevo y emocionante. Una baraja con cartas a doble cara y una carta especial FLIP que le da un giro competitivo a la versión clásica.\n\nJuega la carta especial FLIP y tendrás que darle la vuelta a todas las cartas, incluidas las de la pila para robar, para descubrir una baraja de números y colores completamente nuevos en el lado contrario. UNO FLIP! también incluye cartas especiales nuevas, como la que te hace robar cinco cartas o la que te hace saltarte el turno de todos. Cuando a un jugador le queda una sola carta en la mano, ¡tiene que gritar UNO!\n\nNinguna advertencia aplicable.",
+        stripeLink: ""
+      }
+    ];
+
+    function esc(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+    function eur(n) { return n.toFixed(2).replace('.',',')+' €'; }
+
+    function getCoverImage(p) {
+      return Array.isArray(p.images) && p.images.length > 0 ? p.images[0] : (p.image || '');
+    }
+
+    function buyButton(p, small) {
+      const size = small ? 'px-3.5 py-2 text-xs' : 'w-full py-3 px-4';
+      if (!p.stripeLink) return `<span class="${size} rounded-xl bg-gray-100 text-gray-400 font-bold flex items-center justify-center gap-2 cursor-not-allowed">Próximamente</span>`;
+      return `<a href="${esc(p.stripeLink)}" target="_blank" rel="noopener" class="${size} rounded-xl bg-kiwi-600 hover:bg-kiwi-700 text-white font-bold transition-all flex items-center justify-center gap-2"><i class="fa-solid fa-lock"></i> Comprar</a>`;
+    }
+
+    function renderProducts(items) {
+      const grid = document.getElementById('productGrid');
+      const empty = document.getElementById('emptyState');
+      if(!grid) return;
+      grid.innerHTML = '';
+      
+      if (items.length === 0) {
+        if(empty) empty.classList.remove('hidden');
+        return;
+      } else {
+        if(empty) empty.classList.add('hidden');
+      }
+
+      items.forEach(p => {
+        const cover = getCoverImage(p);
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group";
+        
+        card.innerHTML = `
+          <div class="bg-gray-100 overflow-hidden cursor-pointer aspect-square flex items-center justify-center" onclick="openModal(${p.id})">
+            <img src="${esc(cover)}" alt="${esc(p.title)}" loading="lazy" class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x400/e2e8f0/1e293b?text=TheKiwiStore';">
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <span class="text-[11px] font-semibold text-kiwi-600 uppercase tracking-wider">Juguetes</span>
+              <h3 onclick="openModal(${p.id})" class="font-bold text-sm text-gray-900 line-clamp-2 hover:text-kiwi-600 cursor-pointer transition-colors mt-1">${esc(p.title)}</h3>
+            </div>
+            <div class="flex items-end justify-between pt-2 border-t border-gray-100">
+              <span class="text-lg font-black text-gray-900">${eur(p.price)}</span>
+              ${buyButton(p, true)}
+            </div>
+          </div>`;
+        grid.appendChild(card);
+      });
+    }
+
+    function applyFilters() {
+      const deskInput = document.getElementById('searchInput');
+      const mobInput = document.getElementById('searchMobileInput');
+      const searchTerm = ((deskInput ? deskInput.value : '') || (mobInput ? mobInput.value : '') || '').toLowerCase().trim();
+
+      let list = products.slice();
+      if (searchTerm) {
+        list = list.filter(p => (p.title + ' ' + p.description).toLowerCase().includes(searchTerm));
+      }
+
+      const sortSelect = document.getElementById('sortSelect');
+      const sort = sortSelect ? sortSelect.value : 'featured';
+      if (sort === 'low-high') list.sort((a, b) => a.price - b.price);
+      if (sort === 'high-low') list.sort((a, b) => b.price - a.price);
+
+      renderProducts(list);
+    }
+
+    function resetFilters() {
+      const deskInput = document.getElementById('searchInput');
+      const mobInput = document.getElementById('searchMobileInput');
+      if(deskInput) deskInput.value = '';
+      if(mobInput) mobInput.value = '';
+      applyFilters();
+    }
+
+    function changeModalImage(src, btn) {
+      const modalImg = document.getElementById('modalImage');
+      if(modalImg) modalImg.src = src;
+      document.querySelectorAll('#modalGallery button').forEach(b => {
+        b.classList.remove('border-kiwi-600');
+        b.classList.add('border-transparent');
+      });
+      if(btn) {
+        btn.cla<li><a href="mailto:info@thekiwistore.com?subject=Estado%20de%20mi%20pedido" class="hover:text-white transition-colors">Estado de mi pedido</a></li>
             <li><a href="legal/envios-devoluciones.html" class="hover:text-white transition-colors">Envíos y devoluciones</a></li>
             <li><a href="mailto:info@thekiwistore.com" class="hover:text-white transition-colors">info@thekiwistore.com</a></li>
           </ul>
