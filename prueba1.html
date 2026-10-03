@@ -1,157 +1,276 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TheKiwiStore - Tu tienda online de confianza</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        kiwi: {
-                            50: '#f2fcf5',
-                            100: '#d7f7e2',
-                            500: '#10b981',
-                            600: '#059669',
-                            700: '#047857',
-                            800: '#065f46',
-                            900: '#064e3b',
-                            accent: '#84cc16'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TheKiwiStore - Juguetes, coleccionables y material escolar</title>
+<meta name="description" content="Tienda online con trato cercano: juguetes, coleccionables y material escolar con envío a España peninsular.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+tailwind.config={theme:{extend:{colors:{kiwi:{50:'#f2fcf5',100:'#d7f7e2',500:'#10b981',600:'#059669',700:'#047857',800:'#065f46',900:'#064e3b',accent:'#84cc16'}},fontFamily:{sans:['Inter','sans-serif']}}}}
+</script>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-kiwi-500 selection:text-white">
 
-    <div class="bg-kiwi-900 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium">
-        <span class="inline-block animate-pulse mr-2">🥝</span> ¡Envío gratis en pedidos superiores a 30€! Aprovecha nuestras ofertas de lanzamiento.
+<div class="bg-kiwi-900 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium">
+  🥝 Envío gratis en pedidos a partir de 50 € · Envíos a España peninsular
+</div>
+
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+    <a href="/" class="flex items-center gap-2 group">
+      <img src="kiwi-logo.svg" alt="TheKiwiStore" class="w-10 h-10 group-hover:scale-105 transition-transform">
+      <div>
+        <span class="text-xl sm:text-2xl font-black tracking-tight text-gray-900">TheKiwi<span class="text-kiwi-600">Store</span></span>
+        <span class="block text-[10px] uppercase tracking-widest text-gray-400 font-semibold">Shop &amp; Enjoy</span>
+      </div>
+    </a>
+    <div class="hidden md:flex flex-1 max-w-md relative">
+      <input type="text" id="searchInput" placeholder="Busca juguetes, material escolar, coleccionables..." class="w-full pl-10 pr-4 py-2.5 bg-gray-100 rounded-full border border-transparent focus:border-kiwi-500 focus:bg-white focus:outline-none transition-all text-sm">
+      <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-gray-400"></i>
     </div>
+    <a href="mailto:info@thekiwistore.com" class="px-4 py-2 rounded-full bg-gray-100 hover:bg-kiwi-100 hover:text-kiwi-700 text-sm font-semibold text-gray-700 transition-colors flex items-center gap-2">
+      <i class="fa-regular fa-envelope"></i><span class="hidden sm:inline">Contacto</span>
+    </a>
+  </div>
+  <div class="md:hidden px-4 pb-3 relative">
+    <input type="text" id="searchMobileInput" placeholder="Buscar productos..." class="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-full border border-transparent focus:border-kiwi-500 focus:bg-white focus:outline-none text-sm">
+    <i class="fa-solid fa-magnifying-glass absolute left-7 top-3 text-gray-400"></i>
+  </div>
+  <div class="bg-gray-50 border-t border-gray-100 overflow-x-auto">
+    <div class="max-w-7xl mx-auto px-4 flex gap-2 sm:gap-6 py-2 whitespace-nowrap">
+      <button onclick="setCategory('todos',this)" class="cat-btn px-4 py-1.5 rounded-full text-sm font-semibold bg-kiwi-600 text-white transition-all shadow-sm">Todos</button>
+      <button onclick="setCategory('juguetes',this)" class="cat-btn px-4 py-1.5 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-200 transition-all">🧸 Juguetes</button>
+      <button onclick="setCategory('coleccion',this)" class="cat-btn px-4 py-1.5 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-200 transition-all">🏆 Colección</button>
+      <button onclick="setCategory('escolar',this)" class="cat-btn px-4 py-1.5 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-200 transition-all">🎒 Material Escolar</button>
+    </div>
+  </div>
+</header>
 
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 transition-all">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-            
-            <!-- Logo -->
-            <a href="#" class="flex items-center gap-2 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-kiwi-600 to-kiwi-accent flex items-center justify-center text-white shadow-md shadow-kiwi-500/20 group-hover:scale-105 transition-transform">
-                    <i class="fa-solid fa-kiwi-bird text-xl"></i>
-                </div>
-                <div>
-                    <span class="text-xl sm:text-2xl font-black tracking-tight text-gray-900">TheKiwi<span class="text-kiwi-600">Store</span></span>
-                    <span class="block text-[10px] uppercase tracking-widest text-gray-400 font-semibold">Shop & Enjoy</span>
-                </div>
-            </a>
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+  <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-kiwi-900 via-kiwi-800 to-kiwi-700 text-white shadow-2xl p-8 sm:p-14 flex flex-col md:flex-row items-center justify-between gap-8">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="relative z-10 max-w-xl space-y-4 text-center md:text-left">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-kiwi-500/30 text-kiwi-100 border border-kiwi-400/30">
+        <i class="fa-solid fa-bolt text-kiwi-accent"></i> Nueva Temporada 2026
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">Juguetes, colección y material escolar en <span class="text-kiwi-accent">TheKiwiStore</span></h1>
+      <p class="text-gray-200 text-sm sm:text-base">Una tienda pequeña con trato cercano. Elegimos cada producto con cariño y te acompañamos desde el pedido hasta que llega a casa.</p>
+      <div class="pt-2 flex flex-wrap gap-3 justify-center md:justify-start">
+        <a href="#catalogo" class="px-6 py-3 rounded-xl bg-kiwi-accent hover:bg-lime-500 text-gray-900 font-bold transition-all shadow-lg shadow-kiwi-accent/20 flex items-center gap-2"><i class="fa-solid fa-gift"></i> Ver productos</a>
+      </div>
+    </div>
+    <div class="relative z-10 flex-shrink-0 w-full md:w-auto flex justify-center">
+      <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-xl max-w-xs text-center space-y-3">
+        <img src="kiwi-logo.svg" alt="" class="w-20 h-20 mx-auto">
+        <h3 class="font-bold text-lg">Compra con confianza</h3>
+        <p class="text-xs text-gray-300">Pago seguro con tarjeta o PayPal, atención personal y 14 días para devolver.</p>
+      </div>
+    </div>
+  </div>
 
-            <!-- Search Bar (Desktop) -->
-            <div class="hidden md:flex flex-1 max-w-md relative">
-                <input type="text" id="searchInput" placeholder="Busca juguetes, material escolar, coleccionables..." 
-                    class="w-full pl-10 pr-4 py-2.5 bg-gray-100 rounded-full border border-transparent focus:border-kiwi-500 focus:bg-white focus:outline-none transition-all text-sm">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-gray-400"></i>
-            </div>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+    <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-kiwi-50 text-kiwi-600 flex items-center justify-center text-lg flex-shrink-0"><i class="fa-solid fa-truck-fast"></i></div>
+      <div><h4 class="font-bold text-xs sm:text-sm">Entrega</h4><p class="text-xs text-gray-500">5 a 10 días laborables</p></div>
+    </div>
+    <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-kiwi-50 text-kiwi-600 flex items-center justify-center text-lg flex-shrink-0"><i class="fa-solid fa-shield-halved"></i></div>
+      <div><h4 class="font-bold text-xs sm:text-sm">Pago seguro</h4><p class="text-xs text-gray-500">Tarjeta y PayPal</p></div>
+    </div>
+    <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-kiwi-50 text-kiwi-600 flex items-center justify-center text-lg flex-shrink-0"><i class="fa-solid fa-headset"></i></div>
+      <div><h4 class="font-bold text-xs sm:text-sm">Atención</h4><p class="text-xs text-gray-500">Lun-Vie, 9 a 22 h</p></div>
+    </div>
+    <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-kiwi-50 text-kiwi-600 flex items-center justify-center text-lg flex-shrink-0"><i class="fa-solid fa-rotate-left"></i></div>
+      <div><h4 class="font-bold text-xs sm:text-sm">Devoluciones</h4><p class="text-xs text-gray-500">14 días para devolver</p></div>
+    </div>
+  </div>
+</section>
 
-            <!-- Actions: Currency/Language & Cart Button -->
-            <div class="flex items-center gap-3 sm:gap-4">
-                <div class="hidden lg:flex items-center gap-2 text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">
-                    <span>🇪🇸 ES</span>
-                    <span class="text-gray-300">|</span>
-                    <span>EUR €</span>
-                </div>
+<main id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 scroll-mt-40">
+  <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+    <div>
+      <h2 id="sectionTitle" class="text-2xl font-bold text-gray-900">Catálogo</h2>
+      <p class="text-sm text-gray-500">Explora nuestros productos.</p>
+    </div>
+    <div class="flex items-center gap-2">
+      <label for="sortSelect" class="text-sm text-gray-500 font-medium">Ordenar por:</label>
+      <select id="sortSelect" onchange="applyFilters()" class="bg-white border border-gray-200 text-sm rounded-xl px-3 py-2 focus:outline-none focus:border-kiwi-500">
+        <option value="featured">Destacados</option>
+        <option value="low-high">Precio: menor a mayor</option>
+        <option value="high-low">Precio: mayor a menor</option>
+      </select>
+    </div>
+  </div>
+  <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+  <div id="emptyState" class="hidden text-center py-16 bg-white rounded-3xl border border-gray-100 mt-4">
+    <div class="text-5xl mb-3">🔍</div>
+    <h3 class="text-lg font-bold text-gray-800">No encontramos productos</h3>
+    <p class="text-sm text-gray-500 mt-1">Prueba con otra palabra o cambia de categoría.</p>
+    <button onclick="resetFilters()" class="mt-4 px-5 py-2 bg-kiwi-600 text-white text-sm font-semibold rounded-xl">Ver todos los productos</button>
+  </div>
+</main>
 
-                <!-- Cart Button -->
-                <button onclick="toggleCart()" class="relative p-2.5 rounded-full bg-gray-100 hover:bg-kiwi-100 hover:text-kiwi-700 transition-colors flex items-center gap-2 text-gray-700">
-                    <i class="fa-solid fa-cart-shopping text-lg"></i>
-                    <span class="hidden sm:inline text-sm font-semibold">Carrito</span>
-                    <span id="cartCount" class="absolute -top-1 -right-1 bg-kiwi-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold shadow">0</span>
-                </button>
-
-                <!-- Mobile menu toggle -->
-                <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-full bg-gray-100 text-gray-700">
-                    <i class="fa-solid fa-bars text-lg"></i>
-                </button>
-            </div>
+<div id="productModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" onclick="closeModal()">
+  <div class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full overflow-hidden relative max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+    <button onclick="closeModal()" aria-label="Cerrar" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/80 hover:bg-gray-100 text-gray-700 flex items-center justify-center shadow transition-all"><i class="fa-solid fa-xmark text-lg"></i></button>
+    <div class="grid grid-cols-1 md:grid-cols-2">
+      <div class="bg-gray-100 flex items-center justify-center p-6">
+        <img id="modalImage" src="" alt="" class="max-h-64 object-contain rounded-xl">
+      </div>
+      <div class="p-6 sm:p-8 flex flex-col justify-between gap-6">
+        <div class="space-y-3">
+          <span id="modalCategory" class="text-xs font-semibold text-kiwi-600 uppercase tracking-wider"></span>
+          <h3 id="modalTitle" class="text-xl sm:text-2xl font-bold text-gray-900 leading-snug"></h3>
+          <span id="modalPrice" class="block text-2xl font-black text-kiwi-700"></span>
+          <p id="modalDescription" class="text-sm text-gray-600 leading-relaxed"></p>
+          <p class="text-xs text-gray-500">Envío 8 € (gratis desde 50 €) · Entrega en 5 a 10 días laborables · <a href="legal/envios-devoluciones.html" class="underline">Envíos y devoluciones</a></p>
         </div>
+        <div id="modalBuy"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        <!-- Secondary Search for Mobile -->
-        <div class="md:hidden px-4 pb-3">
-            <div class="relative w-full">
-                <input type="text" id="searchMobileInput" placeholder="Buscar productos..." 
-                    class="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-full border border-transparent focus:border-kiwi-500 focus:bg-white focus:outline-none text-sm">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400"></i>
-            </div>
+<footer class="bg-gray-900 text-white mt-16 pt-12 pb-8 border-t border-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="space-y-4">
+        <div class="flex items-center gap-2"><img src="kiwi-logo.svg" alt="" class="w-9 h-9"><span class="text-xl font-bold">TheKiwiStore</span></div>
+        <p class="text-xs text-gray-400 leading-relaxed">Tienda online independiente de juguetes, coleccionismo y material escolar, con trato cercano.</p>
+        <div class="flex gap-3 text-lg text-gray-400">
+          <a href="#" aria-label="Instagram" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="TikTok" class="hover:text-white transition-colors"><i class="fa-brands fa-tiktok"></i></a>
         </div>
-
-        <!-- Navigation Tabs -->
-        <div class="bg-gray-50 border-t border-gray-100 overflow-x-auto scrollbar-none">
-            <div class="max-w-7xl mx-auto px-4 flex gap-2 sm:gap-6 py-2 whitespace-nowrap">
-                <button onclick="filterCategory('todos')" class="cat-btn px-4 py-1.5 rounded-full text-sm font-semibold bg-kiwi-600 text-white transition-all shadow-sm">Todos</button>
-                <button onclick="filterCategory('top')" class="cat-btn px-4 py-1.5 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-200 transition-all">🔥 Top Ventas</button>
-                <button onclick="filterCategory('ofertas')" class="cat-btn px-4 py-1.5 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-200 transition-all">⚡ Ofertas</button>
-                <button onclick="filterCategory('juguetes')" class="cat-btn px-4 py-1.5 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-200 transition-all">🧸 Juguetes</button>
-                <button onclick="filterCategory('coleccion')" class="cat-btn px-4 py-1.5 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-200 transition-all">🏆 Colección</button>
-                <button onclick="filterCategory('escolar')" class="cat-btn px-4 py-1.5 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-200 transition-all">🎒 Material Escolar</button>
-            </div>
+      </div>
+      <div>
+        <h4 class="font-bold text-sm uppercase tracking-wider text-gray-300 mb-4">Categorías</h4>
+        <ul class="space-y-2.5 text-xs text-gray-400">
+          <li><a href="#catalogo" onclick="setCategory('juguetes')" class="hover:text-white transition-colors">Juguetes</a></li>
+          <li><a href="#catalogo" onclick="setCategory('coleccion')" class="hover:text-white transition-colors">Colección</a></li>
+          <li><a href="#catalogo" onclick="setCategory('escolar')" class="hover:text-white transition-colors">Material Escolar</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-sm uppercase tracking-wider text-gray-300 mb-4">Ayuda y soporte</h4>
+        <ul class="space-y-2.5 text-xs text-gray-400">
+          <li><a href="mailto:info@thekiwistore.com?subject=Estado%20de%20mi%20pedido" class="hover:text-white transition-colors">Estado de mi pedido</a></li>
+          <li><a href="legal/envios-devoluciones.html" class="hover:text-white transition-colors">Envíos y devoluciones</a></li>
+          <li><a href="mailto:info@thekiwistore.com" class="hover:text-white transition-colors">info@thekiwistore.com</a></li>
+          <li>Lun-Vie, 9:00 a 22:00</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-sm uppercase tracking-wider text-gray-300 mb-4">Métodos de pago</h4>
+        <div class="flex flex-wrap gap-2 text-2xl text-gray-300">
+          <i class="fa-brands fa-cc-visa" title="Visa"></i>
+          <i class="fa-brands fa-cc-mastercard" title="Mastercard"></i>
+          <i class="fa-brands fa-cc-paypal" title="PayPal"></i>
         </div>
-    </header>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+      <p>&copy; 2026 thekiwistore.com. Todos los derechos reservados.</p>
+      <div class="flex gap-4">
+        <a href="legal/privacidad.html" class="hover:underline">Política de privacidad</a>
+        <a href="legal/aviso-legal.html" class="hover:underline">Aviso legal</a>
+        <a href="legal/cookies.html" class="hover:underline">Cookies</a>
+        <a href="legal/envios-devoluciones.html" class="hover:underline">Envíos y devoluciones</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
-        <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-kiwi-900 via-kiwi-800 to-kiwi-700 text-white shadow-2xl p-8 sm:p-14 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-            <div class="relative z-10 max-w-xl space-y-4 text-center md:text-left">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-kiwi-500/30 text-kiwi-100 border border-kiwi-400/30">
-                    <i class="fa-solid fa-bolt text-kiwi-accent"></i> Nueva Temporada 2026
-                </span>
-                <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-                    Todo lo que buscas, al mejor precio en <span class="text-kiwi-accent">TheKiwiStore</span>
-                </h1>
-                <p class="text-gray-200 text-sm sm:text-base">
-                    Descubre nuestra selección estrella en juguetes, coleccionables y material escolar con calidad garantizada y envíos rapidísimos.
-                </p>
-                <div class="pt-2 flex flex-wrap gap-3 justify-center md:justify-start">
-                    <button onclick="filterCategory('ofertas')" class="px-6 py-3 rounded-xl bg-kiwi-accent hover:bg-lime-500 text-gray-900 font-bold transition-all shadow-lg shadow-kiwi-accent/20 flex items-center gap-2">
-                        <i class="fa-solid fa-tags"></i> Ver Ofertas Top
-                    </button>
-                    <button onclick="filterCategory('top')" class="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold transition-all backdrop-blur-sm border border-white/20">
-                        Top Ventas
-                    </button>
-                </div>
-            </div>
-            <div class="relative z-10 flex-shrink-0 w-full md:w-auto flex justify-center">
-                <div class="relative bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-xl max-w-xs text-center space-y-3">
-                    <div class="w-20 h-20 mx-auto bg-kiwi-500/30 rounded-full flex items-center justify-center text-4xl shadow-inner">
-                        🥝
-                    </div>
-                    <h3 class="font-bold text-lg">Garantía TheKiwi</h3>
-                    <p class="text-xs text-gray-300">Pagos 100% seguros, atención al cliente personalizada y devoluciones sencillas.</p>
-                </div>
-            </div>
+<script>
+/* PRODUCTOS DE EJEMPLO: sustituye título, descripción, precio e imagen por los reales.
+   stripeLink: pega aquí el enlace de pago (https://buy.stripe.com/...). Si está vacío, el botón muestra "Próximamente". */
+const products = [
+  {id:1,title:"Set de Bloques de Construcción Espacial",category:"juguetes",price:29.99,image:"https://placehold.co/400x400/e2e8f0/1e293b?text=Juguete+Espacial",description:"Descripción del producto.",stripeLink:""},
+  {id:2,title:"Figura Coleccionable",category:"coleccion",price:45.00,image:"https://placehold.co/400x400/e2e8f0/1e293b?text=Figura+Coleccion",description:"Descripción del producto.",stripeLink:""},
+  {id:3,title:"Mochila Escolar",category:"escolar",price:24.95,image:"https://placehold.co/400x400/e2e8f0/1e293b?text=Mochila+Escolar",description:"Descripción del producto.",stripeLink:""},
+  {id:4,title:"Coche Teledirigido 4x4",category:"juguetes",price:34.99,image:"https://placehold.co/400x400/e2e8f0/1e293b?text=Coche+RC",description:"Descripción del producto.",stripeLink:""},
+  {id:5,title:"Estuche Escolar 3 Pisos",category:"escolar",price:14.99,image:"https://placehold.co/400x400/e2e8f0/1e293b?text=Estuche+Escolar",description:"Descripción del producto.",stripeLink:""},
+  {id:6,title:"Lámpara LED Decorativa",category:"coleccion",price:19.99,image:"https://placehold.co/400x400/e2e8f0/1e293b?text=Lampara+LED",description:"Descripción del producto.",stripeLink:""},
+  {id:7,title:"Juego de Mesa Familiar",category:"juguetes",price:22.50,image:"https://placehold.co/400x400/e2e8f0/1e293b?text=Juego+de+Mesa",description:"Descripción del producto.",stripeLink:""},
+  {id:8,title:"Pack de Cuadernos (4 uds)",category:"escolar",price:12.00,image:"https://placehold.co/400x400/e2e8f0/1e293b?text=Cuadernos+Pack",description:"Descripción del producto.",stripeLink:""}
+];
+const categoryNames={juguetes:'Juguetes',coleccion:'Colección',escolar:'Material Escolar'};
+const titles={todos:['Catálogo','Explora nuestros productos.'],juguetes:['🧸 Juguetes','Diversión y aprendizaje para los peques.'],coleccion:['🏆 Colección','Piezas para entusiastas.'],escolar:['🎒 Material Escolar','Todo para la vuelta a clase.']};
+let currentCategory='todos',searchTerm='';
+
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function eur(n){return n.toFixed(2).replace('.',',')+' €';}
+function buyButton(p,small){
+  const size=small?'px-3.5 py-2 text-xs':'w-full py-3 px-4';
+  if(!p.stripeLink) return `<span class="${size} rounded-xl bg-gray-100 text-gray-400 font-bold flex items-center justify-center gap-2 cursor-not-allowed">Próximamente</span>`;
+  return `<a href="${esc(p.stripeLink)}" target="_blank" rel="noopener" class="${size} rounded-xl bg-kiwi-600 hover:bg-kiwi-700 text-white font-bold transition-all flex items-center justify-center gap-2"><i class="fa-solid fa-lock"></i> Comprar</a>`;
+}
+function renderProducts(items){
+  const grid=document.getElementById('productGrid'),empty=document.getElementById('emptyState');
+  grid.innerHTML='';
+  empty.classList.toggle('hidden',items.length>0);
+  items.forEach(p=>{
+    const card=document.createElement('div');
+    card.className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group";
+    card.innerHTML=`
+      <div class="bg-gray-100 overflow-hidden cursor-pointer aspect-square" onclick="openModal(${p.id})">
+        <img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+      </div>
+      <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+        <div>
+          <span class="text-[11px] font-semibold text-kiwi-600 uppercase tracking-wider">${esc(categoryNames[p.category]||p.category)}</span>
+          <h3 onclick="openModal(${p.id})" class="font-bold text-sm text-gray-900 line-clamp-2 hover:text-kiwi-600 cursor-pointer transition-colors mt-1">${esc(p.title)}</h3>
         </div>
-
-        <!-- Micro-benefits Grid -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-            <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-kiwi-50 text-kiwi-600 flex items-center justify-center text-lg flex-shrink-0">
-                    <i class="fa-solid fa-truck-fast"></i>
-                </div>
-                <div>
-                    <h4 class="font-bold text-xs sm:text-sm">Envío Rápido</h4>
-                    <p class="text-xs text-gray-500">24/48 horas</p>
-                </div>
-            </div>
-            <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-kiwi-50 text-kiwi-600 flex items-center justify-center text-lg flex-shrink-0">
-                    <i class="fa-solid fa-shield-halved"></i>
+        <div class="flex items-end justify-between pt-2 border-t border-gray-100">
+          <span class="text-lg font-black text-gray-900">${eur(p.price)}</span>
+          ${buyButton(p,true)}
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+function applyFilters(){
+  let list=products.filter(p=>currentCategory==='todos'||p.category===currentCategory);
+  if(searchTerm) list=list.filter(p=>(p.title+' '+p.description+' '+(categoryNames[p.category]||'')).toLowerCase().includes(searchTerm));
+  const sort=document.getElementById('sortSelect').value;
+  if(sort==='low-high') list.sort((a,b)=>a.price-b.price);
+  if(sort==='high-low') list.sort((a,b)=>b.price-a.price);
+  document.getElementById('sectionTitle').innerText=titles[currentCategory][0];
+  document.getElementById('sectionSubtitle').innerText=titles[currentCategory][1];
+  renderProducts(list);
+}
+function setCategory(cat,btn){
+  currentCategory=cat;
+  document.querySelectorAll('.cat-btn').forEach(b=>{
+    const on=(b===btn)||(!btn&&b.getAttribute('onclick').includes(`'${cat}'`));
+    b.className="cat-btn px-4 py-1.5 rounded-full text-sm transition-all "+(on?"font-semibold bg-kiwi-600 text-white shadow-sm":"font-medium text-gray-600 hover:bg-gray-200");
+  });
+  applyFilters();
+}
+function resetFilters(){
+  searchTerm='';
+  document.getElementById('searchInput').value='';
+  document.getElementById('searchMobileInput').value='';
+  setCategory('todos');
+}
+function openModal(id){
+  const p=products.find(x=>x.id===id); if(!p) return;
+  document.getElementById('modalImage').src=p.image;
+  document.getElementById('modalImage').alt=p.title;
+  document.getElementById('modalCategory').innerText=categoryNames[p.category]||p.category;
+  document.getElementById('modalTitle').innerText=p.title;
+  document.getElementById('modalPrice').innerText=eur(p.price);
+  document.getElementById('modalDescription').innerText=p.description;
+  document.getElementById('modalBuy').innerHTML=buyButton(p,false);
+  document.getElementById('productModal').classList.remove('hidden');
+}
+function closeModal(){document.getElementById('productModal').classList.add('hidden');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModal();}ved"></i>
                 </div>
                 <div>
                     <h4 class="font-bold text-xs sm:text-sm">Pago Seguro</h4>
