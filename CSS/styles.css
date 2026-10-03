@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Configuración del tema de Tailwind para el CDN */
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          kiwi: {
+            50: '#f2fcf5',
+            100: '#d7f7e2',
+            500: '#10b981',
+            600: '#059669',
+            700: '#047857',
+            800: '#065f46',
+            900: '#064e3b',
+            accent: '#84cc16'
+          }
+        },
+        fontFamily: {
+          sans: ['Inter', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+
+/* Estilos de personalización adicionales */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Ocultar scrollbar pero permitir scroll suave */
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
+}
+.overflow-x-auto {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
