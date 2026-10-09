@@ -5,4 +5,4 @@ compatibility_date = "2026-10-09"
 [[d1_databases]]
 binding = "DB"
 database_name = "thekiwistore-orders"
-database_id = "REEMPLAZAR_CON_DATABASE_ID"
+database_id = "e1cb1f97-7099-4aed-95fa-be4830a1652d"
