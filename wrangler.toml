@@ -1,0 +1,8 @@
+name = "thekiwistore"
+pages_build_output_dir = "."
+compatibility_date = "2026-10-09"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "thekiwistore-orders"
+database_id = "REEMPLAZAR_CON_DATABASE_ID"

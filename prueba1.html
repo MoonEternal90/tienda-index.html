@@ -206,7 +206,7 @@ tailwind.config={theme:{extend:{colors:{kiwi:{50:'#f2fcf5',100:'#d7f7e2',500:'#1
 </footer>
 
 <script>
-/* PRODUCTOS DE EJEMPLO: sustituye título, descripción, precio e imagen por los reales.
+/* CATÁLOGO DEMO: sustituye título, descripción, precio e imagen por los reales antes de vender.
    stripeLink: pega aquí el enlace de pago (https://buy.stripe.com/...). Si está vacío, el botón muestra "Próximamente". */
 const products = [
   {id:1,title:"Set de Bloques de Construcción Espacial",category:"juguetes",price:29.99,image:"https://placehold.co/400x400/e2e8f0/1e293b?text=Juguete+Espacial",description:"Descripción del producto.",stripeLink:""},
@@ -346,7 +346,7 @@ function openModal(id){
 </footer>
 
 <script>
-/* PRODUCTOS DE EJEMPLO: sustituye título, descripción, precio e imagen por los reales.
+/* CATÁLOGO DEMO: sustituye título, descripción, precio e imagen por los reales antes de vender.
    stripeLink: pega aquí el enlace de pago (https://buy.stripe.com/...). Si está vacío, el botón muestra "Próximamente". */
 const products = [
   {id:1,title:"Set de Bloques de Construcción Espacial",category:"juguetes",price:29.99,image:"https://placehold.co/400x400/e2e8f0/1e293b?text=Juguete+Espacial",description:"Descripción del producto.",stripeLink:""},
@@ -805,6 +805,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModal();}ved">
         ];
 
         let cart = [];
+        try { cart = JSON.parse(localStorage.getItem('kiwistore_cart') || '[]'); } catch (_) { cart = []; }
         let currentCategory = 'todos';
         let currentModalProduct = null;
         let modalQty = 1;
@@ -1039,6 +1040,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModal();}ved">
         }
 
         function updateCartUI() {
+            try { localStorage.setItem('kiwistore_cart', JSON.stringify(cart.map(i => ({id:i.id, qty:i.qty, title:i.title, price:i.price, image:i.image})))); } catch (_) {}
             const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
             document.getElementById('cartCount').innerText = totalCount;
             document.getElementById('drawerItemCount').innerText = totalCount;
@@ -1086,10 +1088,10 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModal();}ved">
             });
 
             document.getElementById('cartSubtotal').innerText = subtotal.toFixed(2) + ' €';
-            const shipping = subtotal >= 30 || subtotal === 0 ? 0 : 3.99;
+            const shipping = subtotal >= 50 || subtotal === 0 ? 0 : 8.99;
             document.getElementById('cartShipping').innerText = shipping === 0 ? 'Gratis' : shipping.toFixed(2) + ' €';
             
-            const total = subtotal + (subtotal > 0 && subtotal < 30 ? 3.99 : 0);
+            const total = subtotal + (subtotal > 0 && subtotal < 50 ? 8.99 : 0);
             document.getElementById('cartTotal').innerText = total.toFixed(2) + ' €';
         }
 
@@ -1122,27 +1124,37 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModal();}ved">
             }, 3000);
         }
 
-        // Pasarela de pago simulada
-        function proceedToCheckout() {
-            if (cart.length === 0) {
+        // Checkout real en modo de prueba: el servidor vuelve a validar precios y envío.
+        async function proceedToCheckout() {
+            if (!cart.length) {
                 showToast("Tu carrito está vacío");
                 return;
             }
-            const totalText = document.getElementById('cartTotal').innerText;
-            document.getElementById('checkoutTotalAmount').innerText = totalText;
-            toggleCart();
-            document.getElementById('checkoutModal').classList.remove('hidden');
+            const button = document.querySelector('#cartFooter button[onclick="proceedToCheckout()"]');
+            const oldText = button ? button.innerHTML : '';
+            if (button) { button.disabled = true; button.innerHTML = 'Preparando pago…'; }
+            try {
+                const response = await fetch('/api/checkout', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({items: cart.map(item => ({id: item.id, quantity: item.qty}))})
+                });
+                const data = await response.json();
+                if (!response.ok || !data.url) throw new Error(data.error || 'No se pudo iniciar el pago.');
+                window.location.href = data.url;
+            } catch (error) {
+                showToast(error.message || 'Error al iniciar el pago');
+                if (button) { button.disabled = false; button.innerHTML = oldText; }
+            }
         }
 
         function closeCheckoutModal() {
-            document.getElementById('checkoutModal').classList.add('hidden');
+            document.getElementById('checkoutModal')?.classList.add('hidden');
         }
 
         function completeCheckout() {
             closeCheckoutModal();
-            cart = [];
-            updateCartUI();
-            showToast("¡Pedido realizado con éxito! Gracias por confiar en thekiwistore.com");
+            showToast("El pago se confirma cuando Stripe lo notifica al servidor.");
         }
     </script>
 </body>
