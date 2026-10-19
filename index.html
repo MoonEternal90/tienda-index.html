@@ -62,7 +62,7 @@
   </aside>
   <div class="toast" id="toast" role="status" hidden></div>
   <script type="module">
-    import { PRODUCTS, SHIPPING_CENTS, FREE_SHIPPING_THRESHOLD_CENTS } from './catalog.js';
+    import { PRODUCTS, SHIPPING_CENTS, FREE_SHIPPING_THRESHOLD_CENTS } from './catalog.js?v=463cdaa';
     const names={todos:'Todos',juguetes:'Juguetes',coleccion:'Colección',escolar:'Material escolar'};
     const active=PRODUCTS.filter(p=>p.active);
     const money=cents=>new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR'}).format(cents/100);
