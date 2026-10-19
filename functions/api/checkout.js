@@ -1,4 +1,6 @@
-import { PRODUCTS, SHIPPING_CENTS, FREE_SHIPPING_THRESHOLD_CENTS } from '../catalog.js';
+import { PRODUCTS, SHIPPING_CENTS, FREE_SHIPPING_THRESHOLD_CENTS } from '../../catalog.js';
+
+const PRODUCT_BY_ID = new Map(PRODUCTS.map(product => [String(product.id), product]));
 
 const json = (data, status=200) => new Response(JSON.stringify(data), {
   status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' }
@@ -17,14 +19,14 @@ export async function onRequestPost({ request, env }) {
     for (const item of body.items) {
       const id = String(item?.id ?? '');
       const quantity = Number(item?.quantity);
-      if (!PRODUCTS[id]?.active || !Number.isInteger(quantity) || quantity < 1 || quantity > 20) return json({error:'Producto o cantidad no válida.'}, 400);
+      if (!PRODUCT_BY_ID.get(id)?.active || !Number.isInteger(quantity) || quantity < 1 || quantity > 20) return json({error:'Producto o cantidad no válida.'}, 400);
       quantities.set(id, (quantities.get(id) || 0) + quantity);
     }
     if ([...quantities.values()].some(q => q > 20)) return json({error:'Cantidad máxima por producto: 20.'}, 400);
 
     const items = [...quantities.entries()].map(([id, quantity]) => ({
-      id: Number(id), title: PRODUCTS[id].title, unitPrice: PRODUCTS[id].price, quantity,
-      lineTotal: PRODUCTS[id].price * quantity
+      id: Number(id), title: PRODUCT_BY_ID.get(id).title, unitPrice: PRODUCT_BY_ID.get(id).price, quantity,
+      lineTotal: PRODUCT_BY_ID.get(id).price * quantity
     }));
     const subtotal = items.reduce((sum, i) => sum + i.lineTotal, 0);
     const shipping = subtotal >= FREE_SHIPPING_THRESHOLD_CENTS ? 0 : SHIPPING_CENTS;
@@ -46,16 +48,16 @@ export async function onRequestPost({ request, env }) {
     form.set('billing_address_collection', 'required');
     form.set('shipping_address_collection[allowed_countries][0]', 'ES');
     form.set('phone_number_collection[enabled]', 'true');
-    form.set('line_items[0][price_data][currency]', 'eur');
-    form.set('line_items[0][price_data][product_data][name]', 'Pedido TheKiwiStore');
-    form.set('line_items[0][price_data][unit_amount]', String(subtotal));
-    form.set('line_items[0][quantity]', '1');
-    if (shipping > 0) {
-      form.set('shipping_options[0][shipping_rate_data][type]', 'fixed_amount');
-      form.set('shipping_options[0][shipping_rate_data][fixed_amount][amount]', String(shipping));
-      form.set('shipping_options[0][shipping_rate_data][fixed_amount][currency]', 'eur');
-      form.set('shipping_options[0][shipping_rate_data][display_name]', 'Envío península');
-    }
+    items.forEach((item, index) => {
+      form.set(`line_items[${index}][price_data][currency]`, 'eur');
+      form.set(`line_items[${index}][price_data][product_data][name]`, item.title);
+      form.set(`line_items[${index}][price_data][unit_amount]`, String(item.unitPrice));
+      form.set(`line_items[${index}][quantity]`, String(item.quantity));
+    });
+    form.set('shipping_options[0][shipping_rate_data][type]', 'fixed_amount');
+    form.set('shipping_options[0][shipping_rate_data][fixed_amount][amount]', String(shipping));
+    form.set('shipping_options[0][shipping_rate_data][fixed_amount][currency]', 'eur');
+    form.set('shipping_options[0][shipping_rate_data][display_name]', shipping ? 'Envío península' : 'Envío gratis');
     form.set('metadata[shipping_cents]', String(shipping));
     const stripeRes = await fetch('https://api.stripe.com/v1/checkout/sessions', {
       method: 'POST',

@@ -12,12 +12,17 @@ export async function onRequestPost({request, env}) {
   if (!env.STRIPE_WEBHOOK_SECRET || !env.DB) return new Response('Not configured', {status:503});
   const raw = await request.text();
   const signature = request.headers.get('stripe-signature') || '';
-  const parts = Object.fromEntries(signature.split(',').map(x => x.split('=')));
-  const timestamp = parts.t;
-  const sig = parts.v1;
-  if (!timestamp || !sig || Math.abs(Date.now()/1000 - Number(timestamp)) > 300) return new Response('Invalid signature', {status:400});
+  const parts = signature.split(',').map(part => part.split('='));
+  const timestamp = parts.find(([key]) => key === 't')?.[1];
+  const signatures = parts.filter(([key]) => key === 'v1').map(([, value]) => value);
+  const timestampNumber = Number(timestamp);
+  if (!timestamp || !Number.isFinite(timestampNumber) || !signatures.length || Math.abs(Date.now()/1000 - timestampNumber) > 300) {
+    return new Response('Invalid signature', {status:400});
+  }
   const expected = await hmac(env.STRIPE_WEBHOOK_SECRET, `${timestamp}.${raw}`);
-  if (!constantTimeEqual(expected, sig)) return new Response('Invalid signature', {status:400});
+  if (!signatures.some(signatureValue => constantTimeEqual(expected, signatureValue))) {
+    return new Response('Invalid signature', {status:400});
+  }
   let event;
   try { event = JSON.parse(raw); } catch { return new Response('Invalid payload', {status:400}); }
   if (event.type === 'checkout.session.completed' || event.type === 'checkout.session.async_payment_succeeded') {
