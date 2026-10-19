@@ -11,7 +11,9 @@ CREATE TABLE IF NOT EXISTS orders (
   stripe_livemode INTEGER NOT NULL DEFAULT 0,
   customer_email TEXT,
   customer_name TEXT,
-  shipping_json TEXT
+  customer_phone TEXT,
+  shipping_json TEXT,
+  archived_at TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_orders_created_at ON orders(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_orders_status ON orders(status);

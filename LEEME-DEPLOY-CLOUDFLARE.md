@@ -8,6 +8,7 @@ Esta rama contiene una base corregida y un catálogo candidato, pero **todavía 
 - `catalog.js` es la fuente común de precios para la portada y Pages Functions. Contiene 56 productos candidatos del Excel, excluyendo los que tienen avisos de revisión de precio.
 - `functions/api/checkout.js` comprueba productos, cantidades, precio y envío en el servidor.
 - `functions/webhooks/stripe.js` actualiza el pedido solo después de validar la firma de Stripe.
+- `/admin/orders.html` muestra el teléfono del cliente, estados en español y opciones para archivar, borrar e imprimir pedidos.
 - `/admin/` incluye el panel privado con páginas vistas agregadas, procedencia, ventas y margen aproximado por producto. `/admin/orders.html` conserva el acceso a los pedidos.
 - `analytics.js` registra recuentos agregados por día, página y fuente, sin guardar IP, cookies ni identificadores de visitantes. `migrations/0002_dashboard_analytics.sql` añade las tablas requeridas.
 - Páginas de retorno de pago, error 404, `robots.txt`, sitemap y cabeceras de seguridad para Cloudflare Pages.
@@ -31,6 +32,7 @@ En Cloudflare Pages, conecta el repositorio `MoonEternal90/tienda-index.html`, u
 - La configuración `wrangler.toml` incluye una base de datos D1 y una variable de enlace `DB`. Confirma en el panel que ese ID pertenece al proyecto correcto y que la tabla existe.
 - Preview y producción deben tener bindings separados si se van a hacer pedidos de prueba.
 - Antes de usar el nuevo panel, aplica `migrations/0002_dashboard_analytics.sql` a la base D1 enlazada al entorno. Añade el modo de pago y crea las tablas de visitas y costes; sin la migración y el despliegue el panel no podrá consultar esos datos.
+- Aplica también `migrations/0003_order_management.sql` para guardar el teléfono de checkout y el estado de archivado de los pedidos.
 - Los costes de compra unitarios se guardan desde el panel. El margen es una estimación antes de impuestos, comisiones de pago, embalaje y coste real del envío; se deben completar los costes para obtener un cálculo útil. El panel excluye los pagos de prueba.
 
 ### Stripe, primero en pruebas

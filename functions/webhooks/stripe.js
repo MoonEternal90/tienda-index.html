@@ -32,11 +32,12 @@ export async function onRequestPost({request, env}) {
       if (orderId) {
         // Stripe now nests shipping details under collected_information for some API versions.
         const details = session.shipping_details || session.collected_information?.shipping_details || null;
-        await env.DB.prepare(`UPDATE orders SET status='paid', stripe_livemode=?, customer_email=?, customer_name=?, shipping_json=?
+        await env.DB.prepare(`UPDATE orders SET status='paid', stripe_livemode=?, customer_email=?, customer_name=?, customer_phone=?, shipping_json=?
           WHERE id=? AND stripe_session_id=?`)
           .bind(session.livemode ? 1 : 0,
             session.customer_details?.email || session.customer_email || null,
             details?.name || session.customer_details?.name || null,
+            session.customer_details?.phone || null,
             details ? JSON.stringify(details) : null,
             orderId, session.id).run();
       }
