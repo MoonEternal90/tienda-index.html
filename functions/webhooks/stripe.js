@@ -30,7 +30,8 @@ export async function onRequestPost({request, env}) {
     if (session?.payment_status === 'paid') {
       const orderId = session.metadata?.order_id || session.client_reference_id;
       if (orderId) {
-        const details = session.shipping_details || null;
+        // Stripe now nests shipping details under collected_information for some API versions.
+        const details = session.shipping_details || session.collected_information?.shipping_details || null;
         await env.DB.prepare(`UPDATE orders SET status='paid', stripe_livemode=?, customer_email=?, customer_name=?, shipping_json=?
           WHERE id=? AND stripe_session_id=?`)
           .bind(session.livemode ? 1 : 0,
