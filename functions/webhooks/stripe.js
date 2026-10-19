@@ -25,6 +25,10 @@ export async function onRequestPost({request, env}) {
   }
   let event;
   try { event = JSON.parse(raw); } catch { return new Response('Invalid payload', {status:400}); }
+  const stripeMode = env.STRIPE_MODE || 'test';
+  if (!['test', 'live'].includes(stripeMode) || event.livemode !== (stripeMode === 'live')) {
+    return new Response('Wrong Stripe mode', {status:400});
+  }
   if (event.type === 'checkout.session.completed' || event.type === 'checkout.session.async_payment_succeeded') {
     const session = event.data?.object;
     if (session?.payment_status === 'paid') {

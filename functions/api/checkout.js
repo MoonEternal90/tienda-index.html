@@ -9,9 +9,11 @@ const json = (data, status=200) => new Response(JSON.stringify(data), {
 export async function onRequestPost({ request, env }) {
   try {
     if (!env.STRIPE_SECRET_KEY || !env.DB) return json({error:'El pago todavía no está configurado. Contacta con la tienda.'}, 503);
-    // Esta entrega está bloqueada deliberadamente a claves TEST para evitar cobros accidentales.
-    if (!env.STRIPE_SECRET_KEY.startsWith('sk_test_')) {
-      return json({error:'Este despliegue de ejemplo solo permite claves Stripe de prueba.'}, 503);
+    // Default to test mode. Live charges require both an explicit mode setting and a live key.
+    const stripeMode = env.STRIPE_MODE || 'test';
+    const expectedKeyPrefix = stripeMode === 'live' ? 'sk_live_' : 'sk_test_';
+    if (!['test', 'live'].includes(stripeMode) || !env.STRIPE_SECRET_KEY.startsWith(expectedKeyPrefix)) {
+      return json({error:'La configuración de pagos no es válida.'}, 503);
     }
     const body = await request.json();
     if (!Array.isArray(body.items) || body.items.length < 1 || body.items.length > 40) return json({error:'Carrito no válido.'}, 400);

@@ -15,10 +15,10 @@ Esta rama contiene una base corregida y un catálogo candidato, pero **todavía 
 
 ## Datos que faltan antes de vender
 
-1. Revisar y aprobar los 56 productos candidatos, sus PVP, fotos y disponibilidad antes de habilitar pagos reales.
-2. El envío está configurado a 8,99 € y gratis desde 50 €. Confirmar si se vende solo en península o en toda España.
-3. Confirmar impuestos aplicables, plazos reales, política de devoluciones y quién prepara y entrega los pedidos. El aviso legal ya contiene el titular que indicó la propietaria.
-4. Cuenta Stripe verificada y métodos de pago habilitados. El proyecto no tramita los pedidos con el proveedor ni envía emails automáticamente; habrá que gestionar los pedidos desde el panel y preparar el envío manualmente.
+1. La propietaria confirmó que revisó el catálogo de 56 productos candidatos y aprobó las condiciones de envío configuradas: península, 8,99 €, gratis desde 50 € y plazo estimado de 5–10 días.
+2. Confirmar impuestos aplicables, política de devoluciones y quién prepara y entrega los pedidos. El aviso legal ya contiene el titular que indicó la propietaria.
+3. Stripe está listo según la propietaria, pero producción seguirá sin cobrar hasta que se configure explícitamente `STRIPE_MODE=live`, una clave `sk_live_...` y el secreto del webhook de modo Live en Cloudflare.
+4. El proyecto no tramita los pedidos con el proveedor ni envía emails automáticamente; los pedidos se gestionan desde el panel y la preparación del envío es manual.
 
 ## Despliegue previsto
 
@@ -35,15 +35,16 @@ En Cloudflare Pages, conecta el repositorio `MoonEternal90/tienda-index.html`, u
 - Aplica también `migrations/0003_order_management.sql` para guardar el teléfono de checkout y el estado de archivado de los pedidos.
 - Los costes de compra unitarios se guardan desde el panel. El margen es una estimación antes de impuestos, comisiones de pago, embalaje y coste real del envío; se deben completar los costes para obtener un cálculo útil. El panel excluye los pagos de prueba.
 
-### Stripe, primero en pruebas
+### Stripe, modo de prueba y modo Live
 
-En Cloudflare Pages configura como secretos independientes para Preview y Production:
+En Cloudflare Pages configura secretos independientes para Preview y Production. Para continuar probando, usa:
 
 - `STRIPE_SECRET_KEY`: clave de prueba `sk_test_...`.
-- `STRIPE_WEBHOOK_SECRET`: secreto de firma `whsec_...` del endpoint `https://thekiwistore.com/webhooks/stripe`.
+- `STRIPE_WEBHOOK_SECRET`: secreto de firma `whsec_...` del endpoint `https://thekiwistore.com/webhooks/stripe` (modo de prueba).
+- `STRIPE_MODE`: `test` (o se asume `test` si falta).
 - `ADMIN_TOKEN`: valor aleatorio largo. No lo guardes en archivos ni lo envíes por chat.
 
-Suscribe el webhook a `checkout.session.completed`, `checkout.session.async_payment_succeeded` y `checkout.session.expired`. El código rechaza intencionadamente claves que no empiezan por `sk_test_`; no quites esa protección hasta que el catálogo, los importes, los impuestos, los términos de compra y las pruebas estén aprobados.
+Suscribe el webhook a `checkout.session.completed`, `checkout.session.async_payment_succeeded` y `checkout.session.expired`. El checkout acepta pagos Live solo cuando `STRIPE_MODE=live` y la clave empieza por `sk_live_`; el webhook también rechaza eventos del modo opuesto. Para activar ventas reales, configura en el entorno Production `STRIPE_MODE=live`, la clave `sk_live_...` y el `whsec_...` del webhook Live, guardados directamente como secretos en Cloudflare. Conserva Preview en modo `test` con credenciales de prueba.
 
 ## Verificación necesaria antes de activar ventas
 
