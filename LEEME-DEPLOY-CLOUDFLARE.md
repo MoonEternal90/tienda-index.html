@@ -8,7 +8,8 @@ Esta rama contiene una base corregida y un catálogo candidato, pero **todavía 
 - `catalog.js` es la fuente común de precios para la portada y Pages Functions. Contiene 56 productos candidatos del Excel, excluyendo los que tienen avisos de revisión de precio.
 - `functions/api/checkout.js` comprueba productos, cantidades, precio y envío en el servidor.
 - `functions/webhooks/stripe.js` actualiza el pedido solo después de validar la firma de Stripe.
-- `admin/index.html` permite consultar los últimos pedidos con el token de administrador.
+- `/admin/` incluye el panel privado con páginas vistas agregadas, procedencia, ventas y margen aproximado por producto. `/admin/orders.html` conserva el acceso a los pedidos.
+- `analytics.js` registra recuentos agregados por día, página y fuente, sin guardar IP, cookies ni identificadores de visitantes. `migrations/0002_dashboard_analytics.sql` añade las tablas requeridas.
 - Páginas de retorno de pago, error 404, `robots.txt`, sitemap y cabeceras de seguridad para Cloudflare Pages.
 
 ## Datos que faltan antes de vender
@@ -29,6 +30,8 @@ En Cloudflare Pages, conecta el repositorio `MoonEternal90/tienda-index.html`, u
 - `schema.sql` crea la tabla de pedidos.
 - La configuración `wrangler.toml` incluye una base de datos D1 y una variable de enlace `DB`. Confirma en el panel que ese ID pertenece al proyecto correcto y que la tabla existe.
 - Preview y producción deben tener bindings separados si se van a hacer pedidos de prueba.
+- Antes de usar el nuevo panel, aplica `migrations/0002_dashboard_analytics.sql` a la base D1 enlazada al entorno. Añade el modo de pago y crea las tablas de visitas y costes; sin la migración y el despliegue el panel no podrá consultar esos datos.
+- Los costes de compra unitarios se guardan desde el panel. El margen es una estimación antes de impuestos, comisiones de pago, embalaje y coste real del envío; se deben completar los costes para obtener un cálculo útil. El panel excluye los pagos de prueba.
 
 ### Stripe, primero en pruebas
 
@@ -44,7 +47,7 @@ Suscribe el webhook a `checkout.session.completed`, `checkout.session.async_paym
 
 - Revisar el catálogo importado, fotos, precios, disponibilidad, costes, márgenes e impuestos.
 - Confirmar el importe y las zonas de envío y alinear la web, el carrito, Stripe y las condiciones legales.
-- Probar un pedido de prueba y comprobar que llega el webhook, el pedido aparece en `/admin/` y el importe guardado coincide.
+- Probar un pedido de prueba y comprobar que llega el webhook, el pedido aparece en `/admin/orders.html` y el importe guardado coincide.
 - Probar pago cancelado, producto inexistente, cantidad inválida y firma de webhook inválida.
 - Confirmar HTTPS y redirecciones del dominio después de conectar Cloudflare Pages.
 - Revisar aviso legal, privacidad, cookies y condiciones de venta con los datos reales del vendedor.
