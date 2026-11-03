@@ -5,7 +5,7 @@ Esta rama contiene una base corregida y un catálogo candidato, pero **todavía 
 ## Trabajo ya preparado
 
 - Portada reconstruida en `index.html`, con categorías, búsqueda, ordenación, carrito y conexión al endpoint de Stripe Checkout.
-- `catalog.js` es la fuente común de precios para la portada y Pages Functions. Contiene 56 productos candidatos del Excel, excluyendo los que tienen avisos de revisión de precio.
+- `catalog.js` es la fuente común de precios para la portada y Pages Functions. Los 56 artículos del catálogo anterior están desactivados mientras se prepara la nueva selección exclusiva de juguetes educativos de inspiración Montessori. No se deben activar artículos sin verificar su tipo, edad recomendada, materiales, disponibilidad y precio.
 - `functions/api/checkout.js` comprueba productos, cantidades, precio y envío en el servidor.
 - `functions/webhooks/stripe.js` actualiza el pedido solo después de validar la firma de Stripe.
 - `/admin/orders.html` muestra el teléfono del cliente, estados en español y opciones para archivar, borrar e imprimir pedidos.
@@ -15,10 +15,11 @@ Esta rama contiene una base corregida y un catálogo candidato, pero **todavía 
 
 ## Datos que faltan antes de vender
 
-1. La propietaria confirmó que revisó el catálogo de 56 productos candidatos y aprobó las condiciones de envío configuradas: península, 8,99 €, gratis desde 50 € y plazo estimado de 5–10 días.
-2. Confirmar impuestos aplicables, política de devoluciones y quién prepara y entrega los pedidos. El aviso legal ya contiene el titular que indicó la propietaria.
-3. Stripe está listo según la propietaria, pero producción seguirá sin cobrar hasta que se configure explícitamente `STRIPE_MODE=live`, una clave `sk_live_...` y el secreto del webhook de modo Live en Cloudflare.
-4. El proyecto no tramita los pedidos con el proveedor ni envía emails automáticamente; los pedidos se gestionan desde el panel y la preparación del envío es manual.
+1. La propietaria pidió sustituir la selección anterior por una tienda exclusiva de juguetes educativos de inspiración Montessori. Los 56 artículos del catálogo anterior se han desactivado porque incluyen mochilas, coleccionables y juguetes licenciados no verificados como Montessori o sostenibles.
+2. Las condiciones de envío confirmadas son península, 8,99 €, gratis desde 50 € y plazo estimado de 5–10 días.
+3. Confirmar impuestos aplicables, política de devoluciones y quién prepara y entrega los pedidos. El aviso legal ya contiene el titular que indicó la propietaria.
+4. Stripe está listo según la propietaria, pero producción seguirá sin cobrar hasta que se configure explícitamente `STRIPE_MODE=live`, una clave `sk_live_...` y el secreto del webhook de modo Live en Cloudflare.
+5. El proyecto no tramita los pedidos con el proveedor ni envía emails automáticamente; los pedidos se gestionan desde el panel y la preparación del envío es manual.
 
 ## Despliegue previsto
 
